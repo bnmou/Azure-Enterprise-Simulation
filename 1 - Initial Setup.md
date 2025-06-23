@@ -99,10 +99,11 @@ Each client VM was manually joined to the `wayne.corp` domain.
 ## 7️⃣ Create and Apply NSG: WayneNSG
 
 - **Name:** `WayneNSG`
-- **Inbound Rule:** RDP (3389) allowed from your IP only (initially open to all)
+- **Inbound Rule:** RDP (3389) open to all (helps simulate a realistic noisy log environment) 
 
 📸 **Screenshot:** NSG configuration with rule highlighted  
-_`screenshots/phase1/wayne-nsg-rules.png`_
+![image](https://github.com/user-attachments/assets/e92fb383-5f5c-49b9-a31f-c3c680424071)
+
 
 ---
 
