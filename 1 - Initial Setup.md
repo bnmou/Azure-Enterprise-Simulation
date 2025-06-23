@@ -112,23 +112,30 @@ Each client VM was manually joined to the `wayne.corp` domain.
 ### 🔹 Log Analytics Workspace (LAW)
 - **Name:** `Wayne-LAW`
 - Connected to all enterprise VMs
+- Configured Data Collection Rule
 
-📸 Screenshot: LAW overview page  
-_`screenshots/phase1/law-overview.png`_
+📸 Screenshot: LAW and DCR overview page  
+![image](https://github.com/user-attachments/assets/fa6cbc14-ab40-410b-a514-cd090f25f1e1)
+![image](https://github.com/user-attachments/assets/f918a71a-408e-4a4f-9729-c04dc19eca63)
+![image](https://github.com/user-attachments/assets/39d814f7-9b5c-49b3-a2bc-a389466ed06a)
+
+
 
 ### 🔹 Microsoft Sentinel
 - Connected to `Wayne-LAW`
 - Data connectors configured: Security Events, Defender, Sysmon
 
 📸 Screenshot: Sentinel connectors page  
-_`screenshots/phase1/sentinel-connectors.png`_
+![image](https://github.com/user-attachments/assets/f94660cd-49c6-488b-9fe7-535f51fbfff3)
+
 
 ### 🔹 Defender for Endpoint (XDR)
 - VMs onboarded with script
 - Confirmed visibility in M365 Defender portal
 
 📸 Screenshot: Defender endpoint list  
-_`screenshots/phase1/xdr-devices.png`_
+![image](https://github.com/user-attachments/assets/066e161c-7164-49c4-b0d2-58513525e928)
+
 
 ---
 
@@ -140,10 +147,11 @@ _`screenshots/phase1/xdr-devices.png`_
 - No DNS configured; isolated
 
 ### 🔹 Create Joker-NSG
-- **Inbound Rule:** SSH (22) allowed only from your IP
+- **Inbound Rule:** SSH (22) allowed only from my IP
 
 📸 Screenshot: Joker-NSG rule  
-_`screenshots/phase1/joker-nsg.png`_
+![image](https://github.com/user-attachments/assets/5f613fd8-5e47-4dee-9f4c-9fd861f1e51a)
+
 
 ### 🔹 Deploy Kali Linux (Joker-Kali)
 - Kali deployed into `Joker-VNET`
