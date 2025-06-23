@@ -44,9 +44,14 @@ Once deployed, Active Directory Domain Services was configured.
 
 📸 **Screenshots:**
 - Server Manager showing AD DS role installed  
-  _`screenshots/phase1/ad-ds-config.png`_
-- `dsa.msc` with created users & OUs  
-  _`screenshots/phase1/ad-users-ous.png`_
+![image](https://github.com/user-attachments/assets/263dc3da-9273-40c5-81e1-19643e73bceb)
+
+- `dsa.msc` with created users & OUs
+
+![image](https://github.com/user-attachments/assets/ec2bbfd7-df46-439c-aeb5-0cabb8b6ee63)
+![image](https://github.com/user-attachments/assets/2e4ae7b1-a045-4037-b750-bd3162f5b29f)
+![image](https://github.com/user-attachments/assets/d61aa893-f8d2-4ef6-84a3-4a72a263b566)
+
 
 ---
 
@@ -58,7 +63,8 @@ After configuring AD, virtual machines for domain joining were deployed.
 - All under `Wayne-Enterprises-RG`
 
 📸 **Screenshot:** VM list showing all workstations  
-_`screenshots/phase1/vm-list.png`_
+![image](https://github.com/user-attachments/assets/41cee873-c176-4fad-900e-35acdac13c69)
+
 
 ---
 
@@ -72,7 +78,9 @@ _`screenshots/phase1/vm-list.png`_
 - **DNS Setting:** Private IP of Wayne-DC01 to allow domain join
 
 📸 **Screenshot:** VNet configuration showing custom DNS  
-_`screenshots/phase1/wayne-vnet-dns.png`_
+![image](https://github.com/user-attachments/assets/8629073b-33d6-46f7-b4cb-d2285dfa6842)
+![image](https://github.com/user-attachments/assets/2f99ea2c-0ec4-441b-8041-598f636361e4)
+
 
 ---
 
@@ -81,9 +89,10 @@ Each client VM was manually joined to the `wayne.corp` domain.
 
 📸 **Screenshots:**
 - System Properties → Domain Join screen  
-  _`screenshots/phase1/domain-join.png`_
+![image](https://github.com/user-attachments/assets/ee55782c-cbe4-46db-9c93-0c0c97bae755)
 - Confirmation after domain join & restart  
-  _`screenshots/phase1/domain-join-confirmation.png`_
+![image](https://github.com/user-attachments/assets/a6615d30-7bc6-4223-879f-60c57c39a14b)
+
 
 ---
 
