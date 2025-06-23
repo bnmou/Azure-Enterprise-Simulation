@@ -10,7 +10,9 @@ The first step was to create a dedicated resource group for the enterprise envir
 - **Name:** `Wayne-Enterprises-RG`
 
 📸 **Screenshot:** Azure Portal showing `Wayne-Enterprises-RG` in the Resource Groups list  
-_`screenshots/phase1/wayne-resource-group.png`_
+![image](https://github.com/user-attachments/assets/7a92adbb-2a30-4289-879d-0f70750f438a)
+
+
 
 ---
 
@@ -23,7 +25,8 @@ Deployed the primary domain controller for the `wayne.corp` domain.
 - Placed in `Wayne-VNET` under `AD-Subnet`
 
 📸 **Screenshot:** VM creation blade for Wayne-DC01  
-_`screenshots/phase1/wayne-dc01-deployment.png`_
+![image](https://github.com/user-attachments/assets/02e884be-370e-4d18-b08d-4577f35bbc15)
+
 
 ---
 
