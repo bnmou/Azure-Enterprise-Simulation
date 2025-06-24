@@ -139,26 +139,37 @@ Each client VM was manually joined to the `wayne.corp` domain.
 
 ---
 
-## 9️⃣ Setup Attacker Environment (Joker)
+### 9️⃣ Setup Attacker Environment (Joker)
 
-### 🔹 Create Joker Resource Group & VNet
-- **Resource Group:** `Joker-RG`
-- **VNet:** `Joker-VNET` – `10.1.0.0/24`
-- No DNS configured; isolated
+> ⚠️ **Note:** The attacker environment is entirely hosted **locally** using Oracle VirtualBox. Azure is not used for Joker-Kali due to tool availability and performance limitations.
 
-### 🔹 Create Joker-NSG
-- **Inbound Rule:** SSH (22) allowed only from my IP
+---
 
-📸 Screenshot: Joker-NSG rule  
-![image](https://github.com/user-attachments/assets/5f613fd8-5e47-4dee-9f4c-9fd861f1e51a)
+#### 🔹 Local Kali VM Setup
+- **Platform:** Oracle VirtualBox
+- **VM Name:** `Joker-Kali`
+- **Image:** Official Kali Linux ISO
+- **Networking Mode:** Host-only Adapter or Bridged Adapter (for isolated attack scenarios)
+- **Tools Installed:**
+  - Metasploit
+  - Nmap
+  - CrackMapExec
+  - Impacket
+  - BloodHound + Neo4j
+  - Evil-WinRM
+  - Enum4linux
+  - Responder
+  - and more
 
+📸 _Screenshot:_ Terminal showing Joker-Kali tools  
+![image](screenshots/phase1/kali-terminal.png)
 
-### 🔹 Deploy Kali Linux (Joker-Kali)
-- Kali deployed into `Joker-VNET`
-- Tools pre-installed (Metasploit, Nmap, etc.)
+📸 _Screenshot:_ VirtualBox summary window for Joker-Kali  
+![image](screenshots/phase1/kali-overview.png)
 
-📸 Screenshot: Terminal view of tools  
-_`screenshots/phase1/kali-terminal.png`_
+---
+
+> 🧩 This setup allows full attack simulation against the Azure-hosted Wayne Enterprises domain environment while retaining flexibility and full control.
 
 ---
 
