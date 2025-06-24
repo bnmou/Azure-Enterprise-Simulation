@@ -162,7 +162,7 @@ Each client VM was manually joined to the `wayne.corp` domain.
   - and more
 
 📸 _Screenshot:_ Terminal showing Joker-Kali tools  
-![image](screenshots/phase1/kali-terminal.png)
+![image](https://github.com/user-attachments/assets/1b2c311c-3a98-4588-a5b3-243bec5cd4fe)
 
 📸 _Screenshot:_ VirtualBox summary window for Joker-Kali  
 ![image](https://github.com/user-attachments/assets/d093fbb4-9c0d-4d15-8a6c-fdd995d6c397)
