@@ -165,7 +165,8 @@ Each client VM was manually joined to the `wayne.corp` domain.
 ![image](screenshots/phase1/kali-terminal.png)
 
 📸 _Screenshot:_ VirtualBox summary window for Joker-Kali  
-![image](screenshots/phase1/kali-overview.png)
+![image](https://github.com/user-attachments/assets/d093fbb4-9c0d-4d15-8a6c-fdd995d6c397)
+
 
 ---
 
