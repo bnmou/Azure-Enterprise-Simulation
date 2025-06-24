@@ -180,7 +180,8 @@ Each client VM was manually joined to the `wayne.corp` domain.
 - XDR reporting healthy status
 
 📸 Screenshot: Sentinel logs validating activity  
-_`screenshots/phase1/sentinel-log-validation.png`_
+![image](https://github.com/user-attachments/assets/7ecc17a8-5454-470d-a838-9328a74f7568)
+
 
 ---
 
