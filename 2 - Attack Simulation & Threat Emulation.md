@@ -240,4 +240,4 @@ A full adversarial simulation was executed successfully from external recon to e
 
 ---
 
-**Next:** _Phase 3 – Log Collection & Data Ingestion_
+**Next Phase:** [Phase 3 – Log Collection & Data Ingestion](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/3%20-%20Log%20Collection%20%26%20Data%20Ingestion.md)
