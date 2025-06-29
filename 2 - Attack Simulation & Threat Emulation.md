@@ -207,11 +207,11 @@ net user /domain
 *RDP session via NTLM hash*
 ![after passing the hash and RDP onto barbara we look for other domains and we found Lucious R D](https://github.com/user-attachments/assets/dc33ff0f-4aef-4b15-b95b-d5025edb2882)
 
-Lucious R&D domain identified
+*Lucious R&D domain identified*
 ![Inside Lucious files](https://github.com/user-attachments/assets/23f9732a-a694-48df-a57f-80233cd0dbb5)
 ![Found location of sensitive files will now proceed to extract](https://github.com/user-attachments/assets/6c1b703a-df10-401f-8a05-be18afc6b8ee)
 
-File exfiltration complete
+*File exfiltration complete*
 ![extracting sensitive file to kali via ngrok](https://github.com/user-attachments/assets/541b5000-5916-41c6-9b64-b15735c46ea7)
 ![file landed in our kali machine](https://github.com/user-attachments/assets/0fe30a72-b634-4777-87aa-6cad8b7e4f0b)
 
