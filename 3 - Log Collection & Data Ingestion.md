@@ -1,4 +1,4 @@
-# 🔍 Phase 3: Log Collection & Data Ingestion – Azure SOC Operations Home Lab
+# 🔍 Phase 3: Log Collection & Data Ingestion
 
 > ⚠️ **Disclaimer**  
 > This lab was performed in an isolated Azure-based enterprise simulation strictly for educational purposes. All techniques and telemetry are used to emulate realistic attack patterns for defensive research and blue team skill-building.
@@ -29,7 +29,7 @@ The goal of this phase is to evaluate how well Microsoft Sentinel and Defender c
 | **Affected Users**     | `Barbara.HR`                                                                            |
 | **MITRE Techniques**   | T1566.002, T1204.002, T1059.001, T1003.001                                              |
 | **Alert Types**        | Credential Access, Discovery, Execution, Initial Access, Lateral Movement, Persistence |
-| **File Hashes**        | `revshell.ps1` SHA256: `98d7c0...`<br>`Resume.docm` SHA256: `cbc440...`                 |
+| **File Hashes**        | `revshell.ps1` SHA256: `98d7c0e974e4e9f771ef346633c08ac0bf9a9d95a4756148f2f32bbd499257b3`<br>`Resume.docm` SHA256: `cbc440c111184acc4848b1dade91b4ef118b94895b599a2a6b8168e225086ae3`                 |
 | **IP Addresses**       | `3.136.65.236`, `99.157.17.206`                                                         |
 | **Processes Used**     | `lsass.exe`, `powershell.exe`, `schtasks.exe`, `rundll32.exe`, `net.exe`, `cmd.exe`    |
 
@@ -42,10 +42,10 @@ The goal of this phase is to evaluate how well Microsoft Sentinel and Defender c
 - Victim Barbara opens the file, which spawns a PowerShell session.
 
 📸 *Victim opens the malicious .docm triggering initial execution*  
-![Word doc macro triggers PowerShell](path/to/word-document-macro.png)
+![word document spawns a reverse shell with the nrgok app IP address and revshellps1 acting as evidence](https://github.com/user-attachments/assets/a6d11069-f3d8-449e-8a3c-6ab39872bd78)
 
 📸 *KQL query confirms WINWORD was the parent process for PowerShell*  
-![KQL confirms DOCM spawn](path/to/KQL-DOCM-confirm.png)
+![KQL query confirms DOCM spawned powershell command](https://github.com/user-attachments/assets/0225bdf4-6438-4c5d-9753-504d80ec7239)
 
 ---
 
@@ -53,10 +53,11 @@ The goal of this phase is to evaluate how well Microsoft Sentinel and Defender c
 - A hidden PowerShell session downloads and runs `revshell.ps1`, establishing C2.
 
 📸 *PowerShell reverse shell initiated from victim machine*  
-![KQL confirms reverse shell execution](path/to/KQL-revshell-confirmed.png)
+![KQL query confirms powershell script established a reverse shell connection to ngrok with ip confirmed](https://github.com/user-attachments/assets/75a22f62-d468-4b2e-bfef-9cc292aa6592)
+![reverse shell activity followed by additional suspicious powershell activity on victim machine](https://github.com/user-attachments/assets/73723969-beaf-42b9-bca9-204eaf7584eb)
 
 📸 *The NGROK connection is established successfully for C2*  
-![Confirmed NGROK callback](path/to/ngrok-connection-confirmed.png)
+![KQL query confirms the IP the reverse shell reached out to](https://github.com/user-attachments/assets/a11bcb4a-95a7-4b5b-858b-91c1e03d481b)
 
 ---
 
