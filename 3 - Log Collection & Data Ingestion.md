@@ -109,15 +109,10 @@ The goal of this phase is to evaluate how well Microsoft Sentinel and Defender c
 
 ### **Step 7 – Data Exfiltration (Unalerted)**
 - Sensitive `.bmp` file containing Batmobile schematics is exfiltrated using PowerShell POST to NGROK.
+- No corresponding alert was generated for the exfiltration event, indicating a gap in our sercurity configurations.
 
-📸 *Sensitive file located in Lucious's directory*  
-![Sensitive file accessed](path/to/batmobile-located.png)
-
-📸 *File exfiltrated over HTTP using PowerShell*  
-![File exfiltrated via PowerShell](path/to/file-exfil-post.png)
-
-📸 *No corresponding alert was generated for the exfiltration event*  
-![No alert raised for exfil](path/to/missing-alert-evidence.png)
+📸 *File exfiltrated over HTTPS using PowerShell*  
+![followed by sensitive data exfil](https://github.com/user-attachments/assets/1f8bc933-83e2-4919-8104-87ef0a553092)
 
 ---
 
@@ -125,10 +120,11 @@ The goal of this phase is to evaluate how well Microsoft Sentinel and Defender c
 - Multiple alerts correlate into an incident seen in Defender XDR and Sentinel.
 
 📸 *Microsoft Defender attack graph showing timeline and components*  
-![Defender alert map](path/to/attack-map.png)
+![Graphical Attack Map](https://github.com/user-attachments/assets/ab76bbce-2dfd-4efc-9767-7db151d04818)
 
 📸 *Full incident structure rendered in Microsoft Sentinel*  
-![Sentinel incident tree](path/to/incident-tree.png)
+![Incident spawned from attack](https://github.com/user-attachments/assets/f2bb3290-0d7f-434c-83e6-01dc621e6769)
+![Incident alerts](https://github.com/user-attachments/assets/a8d52f7f-e0ab-4f37-b79c-6bbc19d7f867)
 
 ---
 
