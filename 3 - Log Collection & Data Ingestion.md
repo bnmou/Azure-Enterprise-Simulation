@@ -226,5 +226,4 @@ Phase 3 closes the telemetry feedback loop. We've:
 - Identified a key blind spot
 - Proposed realistic mitigations
 
-**Next: Phase 4 – Detection Engineering & Automated Response 🛠**
-
+**Next Phase:** [Phase 4 – Detection Rules & Analytics](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/3%20-%20Log%20Collection%20%26%20Data%20Ingestion.md)
