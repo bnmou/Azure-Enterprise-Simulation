@@ -130,17 +130,36 @@ The goal of this phase is to evaluate how well Microsoft Sentinel and Defender c
 
 ## 📊 KQL Queries with Screenshots
 
-📸 *PowerShell events filtered by Barbara’s account for lateral movement and execution*  
-![KQL for PowerShell Execution](path/to/KQL-pwsh-barbara.png)
+```kql
+// PowerShell events filtered by Barbara’s account
+DeviceProcessEvents
+| where InitiatingProcessAccountName contains "barbara"
+| where FileName in~ ("powershell.exe", "pwsh.exe")
+| sort by TimeGenerated desc
+| project TimeGenerated, DeviceName, AccountName, FileName, ProcessCommandLine, InitiatingProcessFileName
+```
 
-📸 *Scheduled task creation by attacker as persistence method*  
-![KQL for Scheduled Task Creation](path/to/KQL-schtasks.png)
+```kql
+// Scheduled task creation by attacker
+DeviceEvents
+| where FileName has "schtasks.exe"
+| where InitiatingProcessAccountName contains "barbara"
+| project TimeGenerated, DeviceName, InitiatingProcessCommandLine, FileName, AccountName
+```
 
-📸 *Local admin user "Joker" created and confirmed in logs*  
-![KQL for Admin Account Creation](path/to/KQL-net-user.png)
+```kql
+// Local admin user creation using net.exe
+DeviceProcessEvents
+| where FileName =~ "net.exe"
+| where ProcessCommandLine has "user Joker" or "Administrators Joker"
+```
 
-📸 *PowerShell C2 beacon to NGROK endpoint identified in Sentinel*  
-![KQL for Reverse Shell to NGROK](path/to/KQL-ngrok-traffic.png)
+```kql
+// NGROK C2 traffic via PowerShell
+DeviceNetworkEvents
+| where InitiatingProcessFileName =~ "powershell.exe"
+| where RemoteUrl has "ngrok" or RemoteIP in ("3.134.125.175", "99.157.17.206")
+```
 
 ---
 
@@ -172,7 +191,7 @@ The goal of this phase is to evaluate how well Microsoft Sentinel and Defender c
 | 6/28/2025, 11:33:54 AM  | wayne-client.wayne.corp | `net user Joker Pass123 /add && net localgroup administrators Joker /add`                                    |
 
 📸 *Part of the Sentinel workbook beginning the timeline of events*  
-[insrt ss here]
+![workbook in sentinel with saved queries used to build a timeline of the attack](https://github.com/user-attachments/assets/424be599-9504-432e-ba34-1f14fe6d7862)
 
 ## 🧠 End Summary & Detection Gap
 
@@ -209,6 +228,3 @@ Phase 3 closes the telemetry feedback loop. We've:
 
 **Next: Phase 4 – Detection Engineering & Automated Response 🛠**
 
----
-
-> [🔗 Back to Phase 2 – Attack Simulation](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/2%20-%20Attack%20Simulation%20%26%20Threat%20Emulation.md)
