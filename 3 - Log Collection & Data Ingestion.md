@@ -65,10 +65,10 @@ The goal of this phase is to evaluate how well Microsoft Sentinel and Defender c
 - `schtasks.exe` used to set up a task running `revshell.ps1` on logon.
 
 📸 *Attacker creates scheduled task with hidden PowerShell script*  
-![Scheduled task created](path/to/schtasks-creation.png)
+![attacker creating more persistance by creating a scheduled task that connects back to their malicious reverse shell ps1](https://github.com/user-attachments/assets/2a6c3c11-301c-467b-a54e-360ca24c9a97)
 
 📸 *KQL confirms persistence method using schtasks.exe*  
-![KQL confirms scheduled task creation](path/to/KQL-schtasks-query.png)
+![more persistance creating a scheduled task to reconnect the reverse shell](https://github.com/user-attachments/assets/17f2a281-24e7-4d13-9cfd-30548a594e3b)
 
 ---
 
@@ -76,10 +76,10 @@ The goal of this phase is to evaluate how well Microsoft Sentinel and Defender c
 - Attacker creates a new local admin user `Joker` to maintain access.
 
 📸 *Attacker adds local admin user "Joker" using net.exe*  
-![New admin user created](path/to/net-user-admin.png)
+![attacker then creates persistance with an admin account](https://github.com/user-attachments/assets/72ed6710-d229-488e-afe5-95df2a0975b0)
 
 📸 *Confirmation that Joker has administrative privileges and persistence via task*  
-![Scheduled task plus Joker user](path/to/joker-user-task-confirmed.png)
+![attacker creating persistance by making new user with admin priv](https://github.com/user-attachments/assets/916df9dc-d8f4-46ee-8bae-0abe9b364409)
 
 ---
 
@@ -87,13 +87,12 @@ The goal of this phase is to evaluate how well Microsoft Sentinel and Defender c
 - LSASS memory dumped to retrieve NTLM hashes for pass-the-hash attacks.
 
 📸 *rundll32 is used to dump LSASS memory contents*  
-![LSASS dump initiated](path/to/lsass-dump-rundll.png)
+![rundll used to dump lsass](https://github.com/user-attachments/assets/22e83ef0-23c4-4e8f-b70b-90c1db73c794)
 
 📸 *Dumped LSASS file visible on system*  
-![Memory dump saved](path/to/lsass-dump-success.png)
+![shortly after dumps the LSASS file](https://github.com/user-attachments/assets/c64b3750-c155-4690-8798-19c0c27a4edd)
 
-📸 *KQL confirms rundll32 process targeting LSASS*  
-![KQL confirms rundll32 activity](path/to/KQL-lsass.png)
+📸 *KQL Query confirms pass-the-hash logon*  
 
 ---
 
@@ -101,10 +100,10 @@ The goal of this phase is to evaluate how well Microsoft Sentinel and Defender c
 - Attacker enumerates domain users and pivots to `Lucious.R&D`'s machine.
 
 📸 *Domain user enumeration from victim machine*  
-![Domain discovery by attacker](path/to/domain-discovery.png)
+![we can see the attacker conducting domain discovery](https://github.com/user-attachments/assets/0501c452-4437-43fb-8833-c5af547bd861)
 
 📸 *Attacker moves laterally to Lucious R&D machine and accesses files*  
-![Lucious R&D accessed](path/to/lucious-rdp.png)
+![attacker moving laterally into lucious account](https://github.com/user-attachments/assets/8e7d6d15-d396-44cd-bc4b-f145f2f2a594)
 
 ---
 
