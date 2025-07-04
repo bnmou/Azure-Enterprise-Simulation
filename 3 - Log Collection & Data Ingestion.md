@@ -92,8 +92,6 @@ The goal of this phase is to evaluate how well Microsoft Sentinel and Defender c
 📸 *Dumped LSASS file visible on system*  
 ![shortly after dumps the LSASS file](https://github.com/user-attachments/assets/c64b3750-c155-4690-8798-19c0c27a4edd)
 
-📸 *KQL Query confirms pass-the-hash logon*  
-
 ---
 
 ### **Step 6 – Domain Discovery and Lateral Movement**
