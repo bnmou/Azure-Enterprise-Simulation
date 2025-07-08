@@ -178,5 +178,6 @@ All detection rules were mapped to ATT&CK TTPs and visualized in Microsoft Senti
 
 Phase 4 is complete. All detections successfully generated alerts and incidents, and each query was tested against real attacker telemetry simulated in Phase 2.
 
+---
 
 **Next Phase:** [Phase 5 – SOAR Automation](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/5%20-%20SOAR%20Automation.md)
