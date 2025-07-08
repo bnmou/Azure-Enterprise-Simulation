@@ -25,6 +25,10 @@ This phase focuses on building detection analytics to identify attacker behavior
 
 Each rule below includes the KQL query, a short narrative of how the rule was built, the scan interval used in Sentinel, and associated screenshots:
 
+*Initial thresholds may yield noise and will be optimized in Phase 8*
+
+---
+
 ### 1. **Malicious .docm Execution Detection**
 
 ```kql
