@@ -39,7 +39,7 @@ DeviceProcessEvents
 ```
 
 - I created a query rule inside Sentinel’s analytics to look for suspicious PowerShell processes spawned from macro-embedded Word documents. This simulated a phishing attack using `.docm` files with embedded scripts.
-- **Scan interval:** Every 5 minutes, looking back 1 hour.
+- **Scan interval:** Every 5 minutes, looking back 1 hour. This short interval ensures quick detection of macro-triggered post-exploitation activity while allowing enough data lookback for context.
 
 📸 *DOCM rule configuration*
 ![docm rule config](https://github.com/user-attachments/assets/432f75ea-206b-40db-aa57-987184a37c24)
@@ -63,7 +63,7 @@ DeviceProcessEvents
 ```
 
 - I built this rule to detect obfuscated reverse shell PowerShell commands, often launched with encoded and hidden execution flags from macro payloads or remote execution.
-- **Scan interval:** Every 5 minutes, looking back 1 hour.
+- **Scan interval:** Every 5 minutes, looking back 1 hour. This balance helps detect quick C2 channel behavior while limiting noise from benign PowerShell use.
 
 📸 *Reverse shell rule configuration and confirmation of query*  
 ![reverse shell rule config and confirmation of query](https://github.com/user-attachments/assets/8c512013-570b-45e4-bd34-c47cfe758734)
@@ -84,7 +84,7 @@ DeviceProcessEvents
 ```
 
 - This rule detects common tools and behaviors used to access or dump LSASS memory, a technique attackers use to steal credentials after gaining access (LOLBins).
-- **Scan interval:** Every 5 minutes, looking back 1 hour.
+- **Scan interval:** Every 5 minutes, looking back 1 hour. A short scan interval helps catch credential theft attempts in near real-time for quick containment procedures.
 
 📸 *LSASS dump rule configuration and confirmation of query*  
 ![LSASS dump rule config and confirmation of query](https://github.com/user-attachments/assets/e33ae379-48bb-46b2-b7fb-1056436d7d44)
@@ -108,7 +108,7 @@ DeviceProcessEvents
 ```
 
 - I designed this rule to find suspicious scheduled tasks being created from user accounts, which could indicate attacker persistence via startup scripts or unauthorized jobs.
-- **Scan interval:** Every 5 minutes, looking back 1 hour.
+- **Scan interval:** Every 2 hours, looking back 4 hours. This catches unauthorized persistence attempts while reducing processing overhead.
 
 📸 *Scheduled tasks rule configuration and confirmed query run*  
 ![Scheduled tasks from user accounts that could be suspicious along with a confirmed query run](https://github.com/user-attachments/assets/50eb2660-12de-4944-82b9-1740c94d8938)
@@ -128,7 +128,7 @@ DeviceProcessEvents
 ```
 
 - I configured this rule to detect when a new local user is created and then quickly added to the Administrators group—an indicator of privilege escalation.
-- **Scan interval:** Every 5 minutes, looking back 1 hour.
+- **Scan interval:** Every 5 minutes, looking back 1 hour. This allows the rule to catch quick post-exploitation privilege escalations.
 
 📸 *User creation plus immediate privilege escalation rule created with query confirmation*  
 ![User creation plus immediate privilege escalation rule created with query confirmation](https://github.com/user-attachments/assets/437a112e-c636-41a1-99f6-aeeb85786f79)
@@ -148,7 +148,7 @@ DeviceNetworkEvents
 ```
 
 - This detection monitors outbound network connections to ngrok.io, a tunneling tool used by attackers to bypass firewalls and exfiltrate data.
-- **Scan interval:** Every 1 hour, looking back 14 days.
+- **Scan interval:** Every 1 hour, looking back 14 days. Longer lookback ensures deep catch of any beaconing behavior from tunneling tools.
 
 📸 *Data exfil via ngrok rule and query confirmation*  
 ![data exfil via ngrok rule and query confirmation](https://github.com/user-attachments/assets/0eaae85f-afc9-4289-8d05-2fa65117e9df)
