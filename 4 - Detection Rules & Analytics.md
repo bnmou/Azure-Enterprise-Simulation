@@ -120,13 +120,17 @@ DeviceProcessEvents
 DeviceProcessEvents
 | where ProcessCommandLine has_any ("net user", "net1 user", "/add", "net localgroup administrators")
 | project TimeGenerated, AccountName, FileName, ProcessCommandLine, DeviceName
+| order by TimeGenerated desc
 ```
 
 - I configured this rule to detect when a new local user is created and then quickly added to the Administrators group—an indicator of privilege escalation.
 - **Scan interval:** Every 5 minutes, looking back 1 hour.
 
 📸 *User creation plus immediate privilege escalation rule created with query confirmation*  
-📸 *incident created for user creation and immediate priv escalation*
+![User creation plus immediate privilege escalation rule created with query confirmation](https://github.com/user-attachments/assets/437a112e-c636-41a1-99f6-aeeb85786f79)
+
+📸 *Incident created for user creation and immediate privilege escalation*
+![incident created for user creation and immediate priv escalation](https://github.com/user-attachments/assets/d8bfcdef-3f22-42ee-9308-13013a2ea12e)
 
 ---
 
@@ -134,15 +138,19 @@ DeviceProcessEvents
 
 ```kql
 DeviceNetworkEvents
-| where RemoteUrl contains "ngrok"
+| where RemoteUrl has_any ("ngrok", ".ngrok-free.app")
+| where InitiatingProcessFileName in~ ("powershell.exe", "curl.exe", "wget.exe")
 | project TimeGenerated, DeviceName, RemoteUrl, InitiatingProcessFileName, InitiatingProcessCommandLine
 ```
 
 - This detection monitors outbound network connections to ngrok.io, a tunneling tool used by attackers to bypass firewalls and exfiltrate data.
-- **Scan interval:** Every 5 minutes, looking back 14 days.
+- **Scan interval:** Every 1 hour, looking back 14 days.
 
-📸 *data exfil via ngrok rule and query confirmation*  
-📸 *incident created for NGROK C2 data exfil*
+📸 *Data exfil via ngrok rule and query confirmation*  
+![data exfil via ngrok rule and query confirmation](https://github.com/user-attachments/assets/0eaae85f-afc9-4289-8d05-2fa65117e9df)
+
+📸 *Incident created for NGROK C2 data exfil*
+![incident created for NGROK C2 data exfil](https://github.com/user-attachments/assets/a676b428-9530-4735-a6f5-4371b2e0f524)
 
 ---
 
@@ -151,6 +159,7 @@ DeviceNetworkEvents
 All detection rules were mapped to ATT&CK TTPs and visualized in Microsoft Sentinel’s **MITRE ATT&CK Preview** blade.
 
 📸 *These are the MITRE TTPs we have covered with our analytic rules*
+![These are the MITRE TTPs we have covered with our analytic rules](https://github.com/user-attachments/assets/9871605e-a11f-473e-b2a9-927afb4d6944)
 
 **Mapped Coverage Includes:**
 
@@ -169,5 +178,5 @@ All detection rules were mapped to ATT&CK TTPs and visualized in Microsoft Senti
 
 Phase 4 is complete. All detections successfully generated alerts and incidents, and each query was tested against real attacker telemetry simulated in Phase 2.
 
-Next step: Begin Phase 5 (Incident Response Playbooks).
 
+**Next Phase:** [Phase 5 – SOAR Automation](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/5%20-%20SOAR%20Automation.md)
