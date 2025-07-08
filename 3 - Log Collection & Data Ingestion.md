@@ -1,4 +1,4 @@
-# 🔍 Phase 3: Log Collection & Data Ingestion
+# 📥 Phase 3: Log Collection & Data Ingestion
 
 > ⚠️ **Disclaimer**  
 > This lab was performed in an isolated Azure-based enterprise simulation strictly for educational purposes. All techniques and telemetry are used to emulate realistic attack patterns for defensive research and blue team skill-building.
