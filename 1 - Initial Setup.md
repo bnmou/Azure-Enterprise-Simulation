@@ -193,4 +193,6 @@ This phase set the foundation for enterprise and adversary simulation:
 - ✅ SIEM + XDR integrated
 - ✅ Kali attacker isolated for later simulation
 
+---
+
 **Next Phase:** [Phase 2 – Attack Simulation & Threat Emulation](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/2%20-%20Attack%20Simulation%20%26%20Threat%20Emulation.md)
