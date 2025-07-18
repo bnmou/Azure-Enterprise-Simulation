@@ -44,6 +44,9 @@ DeviceProcessEvents
 📸 *DOCM rule configuration*
 ![docm rule config](https://github.com/user-attachments/assets/432f75ea-206b-40db-aa57-987184a37c24)
 
+📸 *Entity Mapping*    
+<img width="737" height="550" alt="image" src="https://github.com/user-attachments/assets/aaa482e5-f53c-4675-979e-9193a45719c2" />
+
 📸 *Confirmation that our rule is configured to alert on powershell activity from docm macros*  
 ![confirmation that our rule is configured to alert on powershell activity from docm macros](https://github.com/user-attachments/assets/9d8f00a4-d06c-4025-8f1e-8e95147deb08)
 
@@ -152,6 +155,9 @@ DeviceNetworkEvents
 
 📸 *Data exfil via ngrok rule and query confirmation*  
 ![data exfil via ngrok rule and query confirmation](https://github.com/user-attachments/assets/0eaae85f-afc9-4289-8d05-2fa65117e9df)
+
+📸 *Entity Mapping*
+<img width="952" height="627" alt="image" src="https://github.com/user-attachments/assets/9f8a765c-746d-4e03-bcf6-c1a26f36368a" />
 
 📸 *Incident created for NGROK C2 data exfil*
 ![incident created for NGROK C2 data exfil](https://github.com/user-attachments/assets/a676b428-9530-4735-a6f5-4371b2e0f524)
