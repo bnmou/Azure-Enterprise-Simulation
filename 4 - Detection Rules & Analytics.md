@@ -135,7 +135,14 @@ DeviceProcessEvents
 ```kql
 DeviceProcessEvents
 | where ProcessCommandLine has_any ("net user", "net1 user", "/add", "net localgroup administrators")
-| project TimeGenerated, AccountName, FileName, ProcessCommandLine, DeviceName
+| extend CreatedUser = extract(@"(?:net1?|net\.exe)\s+user\s+(\S+)", 1, ProcessCommandLine)
+| project 
+    TimeGenerated, 
+    AccountName,
+    DeviceName,
+    CreatedUser,
+    FileName, 
+    ProcessCommandLine
 | order by TimeGenerated desc
 ```
 
@@ -143,7 +150,10 @@ DeviceProcessEvents
 - **Scan interval:** Every 5 minutes, looking back 1 hour. This allows the rule to catch quick post-exploitation privilege escalations.
 
 📸 *User creation plus immediate privilege escalation rule created with query confirmation*  
-![User creation plus immediate privilege escalation rule created with query confirmation](https://github.com/user-attachments/assets/437a112e-c636-41a1-99f6-aeeb85786f79)
+<img width="1912" height="962" alt="image" src="https://github.com/user-attachments/assets/6f500e0f-e4f1-44c8-95ff-a7e8aebe4f69" />
+
+📸 *Entity Mapping*  
+<img width="752" height="493" alt="image" src="https://github.com/user-attachments/assets/6429a402-f4a4-4031-b114-d5428be985f3" />
 
 📸 *Incident created for user creation and immediate privilege escalation*
 ![incident created for user creation and immediate priv escalation](https://github.com/user-attachments/assets/d8bfcdef-3f22-42ee-9308-13013a2ea12e)
