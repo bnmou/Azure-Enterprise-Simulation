@@ -71,6 +71,9 @@ DeviceProcessEvents
 📸 *Reverse shell rule configuration and confirmation of query*  
 ![reverse shell rule config and confirmation of query](https://github.com/user-attachments/assets/8c512013-570b-45e4-bd34-c47cfe758734)
 
+📸 *Entity Mapping*  
+<img width="664" height="665" alt="image" src="https://github.com/user-attachments/assets/fb481d71-8d4a-4191-8b3b-58d2f9361026" />
+
 📸 *Reverse shell incident created from analytics rule*
 ![reverse shell incident created from analytics rule](https://github.com/user-attachments/assets/1f957dfc-d5d8-453f-b82d-cb887cec6806)
 
