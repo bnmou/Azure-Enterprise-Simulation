@@ -95,6 +95,9 @@ DeviceProcessEvents
 📸 *LSASS dump rule configuration and confirmation of query*  
 ![LSASS dump rule config and confirmation of query](https://github.com/user-attachments/assets/e33ae379-48bb-46b2-b7fb-1056436d7d44)
 
+📸 *Entity Mapping*  
+<img width="749" height="589" alt="image" src="https://github.com/user-attachments/assets/e1872e89-afca-4f82-8123-b622bd5c706e" />
+
 📸 *LSASS dump incident created*
 ![Lsass access incident created](https://github.com/user-attachments/assets/2c0f0420-1334-4653-a9ed-01815ca0317a)
 
@@ -118,6 +121,9 @@ DeviceProcessEvents
 
 📸 *Scheduled tasks rule configuration and confirmed query run*  
 ![Scheduled tasks from user accounts that could be suspicious along with a confirmed query run](https://github.com/user-attachments/assets/50eb2660-12de-4944-82b9-1740c94d8938)
+
+📸 *Entity Mapping*  
+<img width="776" height="584" alt="image" src="https://github.com/user-attachments/assets/608bbda3-809b-4876-830c-56dac31b48f9" />
 
 📸 *Incident triggered for user created scheduled tasks*
 ![incident created for user created scheduled task](https://github.com/user-attachments/assets/e96da39c-034b-426c-bed5-174164b2784b)
