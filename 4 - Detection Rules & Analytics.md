@@ -35,23 +35,32 @@ Each rule below includes the KQL query, a short narrative of how the rule was bu
 DeviceProcessEvents
 | where InitiatingProcessFileName contains "WINWORD.EXE"
 | where FileName == "powershell.exe"
-| project TimeGenerated, DeviceName, AccountName, FileName, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessFolderPath, InitiatingProcessAccountName, ProcessIntegrityLevel, IsInitiatingProcessRemoteSession
+| project TimeGenerated,
+  DeviceName,
+  AccountName,
+  FileName,
+  ProcessCommandLine,
+  InitiatingProcessFileName,
+  InitiatingProcessCommandLine,
+  InitiatingProcessFolderPath,
+  InitiatingProcessAccountName,
+  ProcessIntegrityLevel,
+  IsInitiatingProcessRemoteSession,
+  SHA256,
+  DeviceID
 ```
 
-- I created a query rule inside Sentinel’s analytics to look for suspicious PowerShell processes spawned from macro-embedded Word documents. This simulated a phishing attack using `.docm` files with embedded scripts.
+- I created a query rule inside Sentinel’s analytics to look for suspicious PowerShell processes spawned from macro-embedded Word documents. The query looks for processes integral to our investigation into this type of event such as command lines, folder paths, SHA256 hashes, filenames, and the DeviceID which will be helpful when mapping entities to logic-apps in Phase 5. This simulated a phishing attack using `.docm` files with embedded scripts.
 - **Scan interval:** Every 5 minutes, looking back 1 hour. This short interval ensures quick detection of macro-triggered post-exploitation activity while allowing enough data lookback for context.
 
-📸 *DOCM rule configuration*
-![docm rule config](https://github.com/user-attachments/assets/432f75ea-206b-40db-aa57-987184a37c24)
+📸 *DOCM rule configuration (Using CustomLogs table for organizational purposes)*
+<img width="1912" height="962" alt="image" src="https://github.com/user-attachments/assets/34f6ddf1-35a7-4a71-8378-2b44fa9c6a7f" />
 
 📸 *Entity Mapping*    
-<img width="737" height="550" alt="image" src="https://github.com/user-attachments/assets/aaa482e5-f53c-4675-979e-9193a45719c2" />
+<img width="683" height="632" alt="image" src="https://github.com/user-attachments/assets/793482df-2279-4a41-9001-0da7edccd0e6" />
 
 📸 *Confirmation that our rule is configured to alert on powershell activity from docm macros*  
 ![confirmation that our rule is configured to alert on powershell activity from docm macros](https://github.com/user-attachments/assets/9d8f00a4-d06c-4025-8f1e-8e95147deb08)
-
-📸 *DOCM powershell alerts*
-![docm powershell alerts](https://github.com/user-attachments/assets/8ec722be-a610-442f-a4a2-969694986ca4)
 
 ---
 
