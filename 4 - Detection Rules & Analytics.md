@@ -47,13 +47,13 @@ DeviceProcessEvents
   ProcessIntegrityLevel,
   IsInitiatingProcessRemoteSession,
   SHA256,
-  DeviceID
+  DeviceId
 ```
 
 - I created a query rule inside Sentinel’s analytics to look for suspicious PowerShell processes spawned from macro-embedded Word documents. The query looks for processes integral to our investigation into this type of event such as command lines, folder paths, SHA256 hashes, filenames, and the DeviceID which will be helpful when mapping entities to logic-apps in Phase 5. This simulated a phishing attack using `.docm` files with embedded scripts.
 - **Scan interval:** Every 5 minutes, looking back 1 hour. This short interval ensures quick detection of macro-triggered post-exploitation activity while allowing enough data lookback for context.
 
-📸 *DOCM rule configuration (Using CustomLogs table for organizational purposes)*
+📸 *DOCM rule config (Using CustomLogs table for organizational purposes)*
 <img width="1912" height="962" alt="image" src="https://github.com/user-attachments/assets/34f6ddf1-35a7-4a71-8378-2b44fa9c6a7f" />
 
 📸 *Entity Mapping*    
@@ -68,20 +68,29 @@ DeviceProcessEvents
 
 ```kql
 DeviceProcessEvents
-| where FileName == "powershell.exe"
-| where ProcessCommandLine has_all ("-nop", "NoProfile", "Hidden", "EncodedCommand")
-| where ProcessCommandLine has_any ("Invoke-Expression", "IEX")
-| project TimeGenerated, DeviceName, AccountName, FileName, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName, ProcessIntegrityLevel
+| where FileName =~ "powershell.exe"
+| where ProcessCommandLine has_any ("-nop", "NoProfile", "Hidden", "EncodedCommand")
+| where ProcessCommandLine has "invoke-expression"
+| project TimeGenerated,
+  DeviceName,
+  AccountName,
+  FileName,
+  ProcessCommandLine,
+  InitiatingProcessFileName,
+  InitiatingProcessCommandLine,
+  InitiatingProcessAccountName,
+  ProcessIntegrityLevel,
+  DeviceId
 ```
 
 - I built this rule to detect obfuscated reverse shell PowerShell commands, often launched with encoded and hidden execution flags from macro payloads or remote execution.
 - **Scan interval:** Every 5 minutes, looking back 1 hour. This balance helps detect quick C2 channel behavior while limiting noise from benign PowerShell use.
 
-📸 *Reverse shell rule configuration and confirmation of query*  
-![reverse shell rule config and confirmation of query](https://github.com/user-attachments/assets/8c512013-570b-45e4-bd34-c47cfe758734)
+📸 *Reverse shell rule config (Using CustomLogs table for organizational purposes)*  
+<img width="1912" height="962" alt="image" src="https://github.com/user-attachments/assets/44dfc332-1d24-4600-9e34-bac12d30977c" />
 
 📸 *Entity Mapping*  
-<img width="664" height="665" alt="image" src="https://github.com/user-attachments/assets/fb481d71-8d4a-4191-8b3b-58d2f9361026" />
+<img width="698" height="649" alt="image" src="https://github.com/user-attachments/assets/8c03b77c-f343-4a14-afc0-3125a15ed8dc" />
 
 📸 *Reverse shell incident created from analytics rule*
 ![reverse shell incident created from analytics rule](https://github.com/user-attachments/assets/1f957dfc-d5d8-453f-b82d-cb887cec6806)
