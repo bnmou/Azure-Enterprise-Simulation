@@ -140,17 +140,25 @@ DeviceProcessEvents
     and InitiatingProcessAccountName !startswith "SYSTEM"
     and InitiatingProcessAccountName !startswith "localService"
     and InitiatingProcessAccountName !startswith "NetworkService"
-| project TimeGenerated, DeviceName, AccountName, FileName, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName
+| project TimeGenerated,
+  DeviceName,
+  AccountName,
+  FileName,
+  ProcessCommandLine,
+  InitiatingProcessFileName,
+  InitiatingProcessCommandLine,
+  InitiatingProcessAccountName,
+  DeviceId
 ```
 
 - I designed this rule to find suspicious scheduled tasks being created from user accounts, which could indicate attacker persistence via startup scripts or unauthorized jobs.
 - **Scan interval:** Every 2 hours, looking back 4 hours. This catches unauthorized persistence attempts while reducing processing overhead.
 
-📸 *Scheduled tasks rule configuration and confirmed query run*  
-![Scheduled tasks from user accounts that could be suspicious along with a confirmed query run](https://github.com/user-attachments/assets/50eb2660-12de-4944-82b9-1740c94d8938)
+📸 *Scheduled tasks rule config (Using CustomLogs table for organizational purposes)*  
+<img width="1912" height="962" alt="image" src="https://github.com/user-attachments/assets/b68e773f-bee2-4616-80ab-611b1e800950" />
 
 📸 *Entity Mapping*  
-<img width="776" height="584" alt="image" src="https://github.com/user-attachments/assets/608bbda3-809b-4876-830c-56dac31b48f9" />
+<img width="712" height="636" alt="image" src="https://github.com/user-attachments/assets/9ee0bacb-d1ca-422b-b82b-7814c1dd85fd" />
 
 📸 *Incident triggered for user created scheduled tasks*
 ![incident created for user created scheduled task](https://github.com/user-attachments/assets/e96da39c-034b-426c-bed5-174164b2784b)
