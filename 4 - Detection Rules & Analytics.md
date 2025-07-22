@@ -1,6 +1,6 @@
 # 🔍 Phase 4 - Detection Rules & Analytics&#x20;
 
-This phase focuses on building detection analytics to identify attacker behaviors simulated in Phase 2. Custom analytic rules were created in Microsoft Sentinel to detect specific techniques across the Cyber Kill Chain. Each rule was validated by generating logs in the client VM, verifying alerts and incidents, and documenting the results.
+This phase focuses on building detection analytics to identify attacker behaviors simulated in Phase 2. Custom analytic rules were created in Microsoft Sentinel to detect specific techniques across the Cyber Kill Chain. Each rule was validated by generating logs in the client VM, verifying alerts and incidents, documenting the results and mapping entities for Phase 5.
 
 ---
 
@@ -201,17 +201,22 @@ DeviceProcessEvents
 DeviceNetworkEvents
 | where RemoteUrl has_any ("ngrok", ".ngrok-free.app")
 | where InitiatingProcessFileName in~ ("powershell.exe", "curl.exe", "wget.exe")
-| project TimeGenerated, DeviceName, RemoteUrl, InitiatingProcessFileName, InitiatingProcessCommandLine
+| project TimeGenerated,
+  DeviceName,
+  RemoteUrl,
+  InitiatingProcessFileName,
+  InitiatingProcessCommandLine,
+  DeviceId
 ```
 
-- This detection monitors outbound network connections to ngrok.io, a tunneling tool used by attackers to bypass firewalls and exfiltrate data.
+- This detection monitors outbound network connections to ngrok.io, a tunneling tool abused by attackers to bypass firewalls and exfiltrate data.
 - **Scan interval:** Every 1 hour, looking back 14 days. Longer lookback ensures deep catch of any beaconing behavior from tunneling tools.
 
-📸 *Data exfil via ngrok rule and query confirmation*  
-![data exfil via ngrok rule and query confirmation](https://github.com/user-attachments/assets/0eaae85f-afc9-4289-8d05-2fa65117e9df)
+📸 *Data exfil via ngrok config (Using CustomLogs table for organizational purposes)*  
+<img width="1912" height="962" alt="image" src="https://github.com/user-attachments/assets/ae89e8b0-8305-49c9-8c72-e10c9dda585f" />
 
-📸 *Entity Mapping*
-<img width="952" height="627" alt="image" src="https://github.com/user-attachments/assets/9f8a765c-746d-4e03-bcf6-c1a26f36368a" />
+📸 *Entity Mapping*  
+<img width="635" height="637" alt="image" src="https://github.com/user-attachments/assets/951a8d1c-457e-4ca5-8f86-f8d60a471cb7" />
 
 📸 *Incident created for NGROK C2 data exfil*
 ![incident created for NGROK C2 data exfil](https://github.com/user-attachments/assets/a676b428-9530-4735-a6f5-4371b2e0f524)
