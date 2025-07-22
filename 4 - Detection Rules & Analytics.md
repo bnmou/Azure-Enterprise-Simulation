@@ -171,24 +171,24 @@ DeviceProcessEvents
 DeviceProcessEvents
 | where ProcessCommandLine has_any ("net user", "net1 user", "/add", "net localgroup administrators")
 | extend CreatedUser = extract(@"(?:net1?|net\.exe)\s+user\s+(\S+)", 1, ProcessCommandLine)
-| project 
-    TimeGenerated, 
-    AccountName,
-    DeviceName,
-    CreatedUser,
-    FileName, 
-    ProcessCommandLine
+| project TimeGenerated, 
+  AccountName,
+  DeviceName,
+  CreatedUser,
+  FileName, 
+  ProcessCommandLine,
+  DeviceId
 | order by TimeGenerated desc
 ```
 
-- I configured this rule to detect when a new local user is created and then quickly added to the Administrators group—an indicator of privilege escalation.
+- I configured this rule to detect when a new local user is created and then quickly added to the Administrators group—an indicator of privilege escalation. This query also extracts newly created usernames for easier entity mapping & identification.
 - **Scan interval:** Every 5 minutes, looking back 1 hour. This allows the rule to catch quick post-exploitation privilege escalations.
 
-📸 *User creation plus immediate privilege escalation rule created with query confirmation*  
-<img width="1912" height="962" alt="image" src="https://github.com/user-attachments/assets/6f500e0f-e4f1-44c8-95ff-a7e8aebe4f69" />
+📸 *User creation plus immediate privilege escalation config (Using CustomLogs table for organizational purposes)*  
+<img width="1912" height="962" alt="image" src="https://github.com/user-attachments/assets/2e4e649e-9e5e-424a-8289-ace4ed82746c" />
 
 📸 *Entity Mapping*  
-<img width="752" height="493" alt="image" src="https://github.com/user-attachments/assets/6429a402-f4a4-4031-b114-d5428be985f3" />
+<img width="699" height="544" alt="image" src="https://github.com/user-attachments/assets/2a5f9c68-4eb7-40be-b550-0137707c7180" />
 
 📸 *Incident created for user creation and immediate privilege escalation*
 ![incident created for user creation and immediate priv escalation](https://github.com/user-attachments/assets/d8bfcdef-3f22-42ee-9308-13013a2ea12e)
