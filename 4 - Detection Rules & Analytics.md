@@ -101,20 +101,29 @@ DeviceProcessEvents
 
 ```kql
 DeviceProcessEvents
-| where FileName =~ ("procdump.exe", "mimikatz.exe")
+| where FileName =~ ("procdump.exe" "mimikatz.exe")
   or ProcessCommandLine has_any ("lsass.exe", "comsvcs.dll", "-ma", "dum", "sekurlsa")
 | where ProcessCommandLine has "lsass"
-| project TimeGenerated, DeviceName, AccountName, FileName, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName, ProcessIntegrityLevel
+| project TimeGenerated,
+  DeviceName,
+  AccountName,
+  FileName,
+  ProcessCommandLine,
+  InitiatingProcessFileName,
+  InitiatingProcessCommandLine,
+  InitiatingProcessAccountName,
+  ProcessIntegrityLevel,
+  DeviceId
 ```
 
 - This rule detects common tools and behaviors used to access or dump LSASS memory, a technique attackers use to steal credentials after gaining access (LOLBins).
 - **Scan interval:** Every 5 minutes, looking back 1 hour. A short scan interval helps catch credential theft attempts in near real-time for quick containment procedures.
 
-📸 *LSASS dump rule configuration and confirmation of query*  
-![LSASS dump rule config and confirmation of query](https://github.com/user-attachments/assets/e33ae379-48bb-46b2-b7fb-1056436d7d44)
+📸 *LSASS dump rule config (Using CustomLogs table for organizational purposes)*  
+<img width="1912" height="962" alt="image" src="https://github.com/user-attachments/assets/3f445469-2513-4bab-8ec6-0a6848579df9" />
 
 📸 *Entity Mapping*  
-<img width="749" height="589" alt="image" src="https://github.com/user-attachments/assets/e1872e89-afca-4f82-8123-b622bd5c706e" />
+<img width="685" height="631" alt="image" src="https://github.com/user-attachments/assets/5c443f8d-f272-45c4-a907-fb3c0eb0a449" />
 
 📸 *LSASS dump incident created*
 ![Lsass access incident created](https://github.com/user-attachments/assets/2c0f0420-1334-4653-a9ed-01815ca0317a)
