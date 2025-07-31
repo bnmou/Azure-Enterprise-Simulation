@@ -36,72 +36,81 @@ Triggers when a `.docm` file containing a malicious macro is executed, initiatin
 
 **Step-by-Step Breakdown**:
 
-*Playbook Overview*
+📸*Playbook Overview*
 <img width="1912" height="962" alt="Macro Playbook overview" src="https://github.com/user-attachments/assets/b4dfc085-787a-4c0e-a0a8-720b9676bdd7" />
 
 ---
 
 1. **Trigger**
 
-   * Triggered manually from the Sentinel incident.
+   📸*Triggered manually from the Sentinel incident.*
+
    <img width="565" height="430" alt="image" src="https://github.com/user-attachments/assets/d0266379-6154-49a7-8f58-3933d5e4c2c9" />
 
 2. **Compose Entities**
 
-   * Extracts involved usernames, file hashes, and device names.
+   📸*Extracts involved usernames, file hashes, and device names.*
+   
    <img width="562" height="249" alt="image" src="https://github.com/user-attachments/assets/46c5be6e-c2d8-47a7-8681-abd995f85444" />
 
 3. **Get Auth Token (MDE)**
 
-   * Performs secure OAuth token retrieval for API use.
+   📸*Performs secure OAuth token retrieval for API use.*
+   
     <img width="568" height="557" alt="image" src="https://github.com/user-attachments/assets/afe7acbe-acce-4e14-a09b-cc419b004e02" />
 
 4. **Restrict App Execution**
 
-   * Applies "Attack Surface Reduction" tagging via Defender API.
+   📸*Applies "Attack Surface Reduction" tagging via Defender API.*
+   
    <img width="568" height="496" alt="image" src="https://github.com/user-attachments/assets/63cac163-97bf-4e0d-b744-5f354ce2bb2b" />
 
 5. **Run AV Scan**
 
-   * Forces a Defender Antivirus scan remotely on affected endpoint.
-  <img width="571" height="501" alt="image" src="https://github.com/user-attachments/assets/9894a305-1184-4b89-9803-08133d103db1" />
+   📸*Forces a Defender Antivirus scan remotely on affected endpoint.*
+   
+   <img width="571" height="501" alt="image" src="https://github.com/user-attachments/assets/9894a305-1184-4b89-9803-08133d103db1" />
 
 6. **Send Email (V2)**
 
-   * Notifies the affected user that a suspicious macro was executed.
+   📸*Notifies the affected user that a suspicious macro was executed.*
+   
    <img width="566" height="562" alt="image" src="https://github.com/user-attachments/assets/d7cc5778-325f-4fea-8adb-fbb75a5646a3" />
 
 7. **Discord Alert**
 
-   * Sends alert to SOC team via webhook with incident title and user/machine context.
+   📸*Sends alert to SOC team via webhook with incident title and user/machine context.*
+   
    <img width="562" height="763" alt="image" src="https://github.com/user-attachments/assets/520889e0-cc47-462c-bd9f-412a22c5761d" />
 
 8. **Get File Statistics**
 
-   * Extracts the SHA256 hash from the malicous macro file.
+    📸*Extracts the SHA256 hash from the malicous macro file.*
+    
    <img width="564" height="521" alt="image" src="https://github.com/user-attachments/assets/0414df55-3bc7-4766-b81e-893b0fb8be71" />
 
 9. **Upload SHA256 to Threat Intelligence**
 
-   * Automatically extracts file hash from the "Get File Statistics" step and uploads it to Sentinel's custom threat intelligence table.
+    📸*Automatically extracts file hash from the "Get File Statistics" step and uploads it to Sentinel's custom threat intelligence table.*
+    
    <img width="563" height="778" alt="image" src="https://github.com/user-attachments/assets/6cb5f94d-1d7a-48ad-9a48-066e2e63cd43" />
 
 ### 📊 Screenshots
 
 * *Playbook operating successfully*
-  ![Macro Success](./screenshots/phase5/macro%20playbook%20operating%20successfully.png)
+  <img width="1912" height="962" alt="Macro playbook operating successfully" src="https://github.com/user-attachments/assets/74cf4803-5cd8-4ae7-8dd8-d224f3a36e7d" />
 
 * *Device tagged and AV scan launched*
-  ![Tagged + AV](./screenshots/phase5/macro%20machine%20tagged%20and%20AV%20scan%20conducted.png)
+  <img width="1912" height="962" alt="macro machine tagged and AV scan conducted" src="https://github.com/user-attachments/assets/d8dba25f-f6fd-4543-beb6-c48db99e5b92" />
 
 * *SHA256 hash added to Threat Intel*
-  ![Threat Intel Hash](./screenshots/phase5/Macro%20SHA%20256%20blocked%20and%20added%20to%20threat%20intel.png)
+  <img width="1912" height="962" alt="Macro SHA 256 blocked and added to threat intel" src="https://github.com/user-attachments/assets/4ae29896-0e6d-4510-b42d-1446fe2f9d76" />
 
 * *Discord alert with dynamic incident summary*
-  ![Discord Alert](./screenshots/phase5/macro%20playbook%20discord%20alert.png)
+  <img width="1256" height="407" alt="macro playbook discord alert" src="https://github.com/user-attachments/assets/d0c07b0d-078f-4ef7-805e-3ea58d5bcbeb" />
 
 * *Email notification to compromised user*
-  ![Email](./screenshots/phase5/email%20notification.png)
+  <img width="1629" height="320" alt="email notification" src="https://github.com/user-attachments/assets/0d16496c-0e7b-44be-aec8-e302aaaf9756" />
 
 ### 🧠 Key Takeaways (Macro Execution Scenario)
 
