@@ -255,13 +255,13 @@ Flags and auto-restricts new accounts that are granted administrator rights with
    
    <img width="564" height="402" alt="image" src="https://github.com/user-attachments/assets/a3d55756-40fb-4de5-b714-34943a22ace8" />
 
-3. **Compose Entities**
+2. **Compose Entities**
 
    📸*Parses usernames and roles.*
    
    <img width="558" height="375" alt="image" src="https://github.com/user-attachments/assets/fcbb9210-afe3-4d81-8c6b-2b9fe497aaaa" />
 
-5. **Filter Array + Known Users**
+3. **Filter Array + Known Users**
 
    📸*Filters out entities for UserAccounts.*
    
@@ -275,41 +275,42 @@ Flags and auto-restricts new accounts that are granted administrator rights with
    
    <img width="565" height="802" alt="image" src="https://github.com/user-attachments/assets/a2d06fb2-fafd-4f31-a327-357cd4cc5aee" />
 
-7. **Discord Alert**
+4. **Discord Alert**
 
    📸*Sends alert on risky admin assignment.*
    
     <img width="563" height="802" alt="image" src="https://github.com/user-attachments/assets/913bb1ee-e31c-4fbe-8b4e-6907da86b0ce" />
 
-9. **Email Notification (SOC)**
-
-   📸*Notifies analysts for review and audit.*
+5. **Email Notification (SOC)**
    
+   📸*Notifies analysts for review and audit as well as affected user.*
+   
+   <img width="566" height="549" alt="image" src="https://github.com/user-attachments/assets/b53153f6-9b41-4bc1-a27d-ad4fa987de03" />
    <img width="569" height="557" alt="image" src="https://github.com/user-attachments/assets/0b33e503-2bfd-4d25-ab73-da1ae6a3c1c4" />
-
-11. **Get Auth Token**
-
+   
+6. **Get Auth Token**
+   
    📸*Grants token for Defender script execution.*
    
    <img width="565" height="555" alt="image" src="https://github.com/user-attachments/assets/063945d2-d7ec-4879-bc07-3d9f2040ef23" />
-
-11. **For Each Filtered User**
-
+   
+7. **For Each Filtered User**
+   
    📸*Runs live response script to remove from local admin group and disable account*
    
    <img width="565" height="655" alt="image" src="https://github.com/user-attachments/assets/b6695289-95cd-4304-8189-149fb508a623" />
-
-11. **Add Comment to Incident**
-
-    📸*Documents SOAR action timeline.*
+   
+8. **Add Comment to Incident**
+   
+   📸*Documents SOAR action timeline.*
      
-    <img width="568" height="512" alt="image" src="https://github.com/user-attachments/assets/d34a3275-b621-4aa2-b725-36e187aa3ec3" />
-
-11. **Upload Usernames to Threat Intel and notify analysts via email**
+   <img width="568" height="512" alt="image" src="https://github.com/user-attachments/assets/d34a3275-b621-4aa2-b725-36e187aa3ec3" />
+   
+9. **Upload Usernames to Threat Intel**
      
-     📸*Flags user as possible persistence vector.*
+   📸*Flags user as possible persistence vector.*
     
-     <img width="566" height="801" alt="image" src="https://github.com/user-attachments/assets/80bac710-5cd8-4ac6-b348-9310a364395e" />
+   <img width="566" height="801" alt="image" src="https://github.com/user-attachments/assets/80bac710-5cd8-4ac6-b348-9310a364395e" />
 
 ### 📊 Screenshots
 
