@@ -130,7 +130,7 @@ Triggers when a `.docm` file containing a malicious macro is executed, initiatin
 
 ### 🔐 Purpose
 
-Detects and responds to reverse shell attempts launched using Windows LOLBins like Rundll32, Comsvcs.dll, PowerShell, `cmd.exe`, or encoded base64 payloads.
+Detects and responds to reverse shell attempts launched using Windows, PowerShell, `cmd.exe`, or encoded base64 payloads.
 
 ### ⚙️ Logic App Breakdown
 
