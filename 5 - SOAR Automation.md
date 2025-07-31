@@ -354,7 +354,7 @@ Flags and auto-restricts new accounts that are granted administrator rights with
 
 ### 🔐 Purpose
 
-Responds to LOLBins or credential tools accessing `lsass.exe`, commonly used in Mimikatz-style attacks.
+Responds to LOLBins (`Rundll32, Comsvcs.dll`) or credential tools accessing `lsass.exe`, commonly used in Mimikatz-style attacks.
 
 ### ⚙️ Logic App Breakdown
 
@@ -367,35 +367,58 @@ Responds to LOLBins or credential tools accessing `lsass.exe`, commonly used in 
 
 **Step-by-Step Breakdown**:
 
-1. **Get Incident**
+📸*Playbook Overview*
+<img width="1912" height="962" alt="LSASS Playbook overview" src="https://github.com/user-attachments/assets/7e7d2efa-16ff-4db8-a885-30cc3ac79ac3" />
 
-   * Captures device, user, and command line.
+1. **Get Incident & Compose Entities**
+
+   📸*Captures device, user, and command line.*
+   
+   <img width="565" height="415" alt="image" src="https://github.com/user-attachments/assets/10cc7596-d487-4787-8a40-9d95fa63d83e" />
+   <img width="567" height="306" alt="image" src="https://github.com/user-attachments/assets/7cb39216-e0a3-4c44-ae8c-46ad5ebf4103" />
 
 2. **Filter User Entities**
 
-   * Filters affected users only.
+   📸*Filters affected users only.*
+   
+   <img width="569" height="330" alt="image" src="https://github.com/user-attachments/assets/c603f7aa-c454-4e29-8095-42bbf2d35ed0" />
 
 3. **Send Discord Alert**
 
-   * Notifies analysts of possible dump attempt.
+   📸*Notifies analysts of possible dump attempt.*
+   
+   <img width="564" height="800" alt="image" src="https://github.com/user-attachments/assets/08e5b3ea-2410-4c88-9283-628aab870a05" />
 
 4. **Send Email Notification**
 
-   * Notifies user and logs to mailbox.
+   📸*Notifies user and logs to mailbox.*
+   
+   <img width="565" height="574" alt="image" src="https://github.com/user-attachments/assets/ab8bf228-8ac7-4723-9a7d-fdac02b00c7a" />
 
 5. **Get Auth Token**
-
-   * OAuth token for Defender script deployment.
-
+   
+   📸*OAuth token for Defender script deployment.*
+   
+   <img width="567" height="520" alt="image" src="https://github.com/user-attachments/assets/a737bc06-1d82-4801-b32e-1f8e9e594d4c" />
+   
 6. **Isolate + Tag Endpoint**
-
-   * Enforces full machine isolation + tagging for tracking.
-
+   
+    📸*Enforces full machine isolation + tagging for tracking.*
+    
+    <img width="566" height="478" alt="image" src="https://github.com/user-attachments/assets/c276edb1-d9eb-44d1-8ffb-21a3dbd7dcf3" />
+    <img width="563" height="508" alt="image" src="https://github.com/user-attachments/assets/7f9f3113-76df-403a-afad-b25cc28833e4" />
+   
 7. **Run Live Response Script** (`RestrictLSASSUser.ps1`)
-
-   * Disables user, forces password reset, removes from Admin group.
-
+   
+    📸*Disables user & forces password reset on next logon.*
+    
+    <img width="566" height="656" alt="image" src="https://github.com/user-attachments/assets/1345d189-bdd4-4e77-bf24-ecaeb80bc5f7" />
+   
 8. **Add Comment to Incident Timeline**
+
+    📸*Adds detailed comment to incident.*
+    
+    <img width="564" height="503" alt="image" src="https://github.com/user-attachments/assets/beb3163b-29ca-427d-9f61-a6e4455bc688" />
 
 ### 📊 Screenshots
 
