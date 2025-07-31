@@ -1,4 +1,4 @@
-# 🛡️ Phase 5 – Automated Incident Response (SOAR)
+# ⚙️ Phase 5: SOAR Automation
 
 **Azure SOC Operations Home Lab | Analyst-Triggered Playbooks**
 
@@ -13,7 +13,7 @@ Each Logic App was carefully constructed with exact permissions, robust API auth
 
 ---
 
-## 🔹 Playbook: MacroExecution\_AutoResponse\_Playbook
+## 🔹 Playbook: MacroExecution AutoResponse Playbook
 
 <details>
 <summary><strong>🔍 Malicious Macro Auto-Response</strong></summary>
@@ -36,45 +36,55 @@ Triggers when a `.docm` file containing a malicious macro is executed, initiatin
 
 **Step-by-Step Breakdown**:
 
+*Playbook Overview*
+<img width="1912" height="962" alt="Macro Playbook overview" src="https://github.com/user-attachments/assets/b4dfc085-787a-4c0e-a0a8-720b9676bdd7" />
+
+---
+
 1. **Trigger**
 
    * Triggered manually from the Sentinel incident.
+   <img width="565" height="430" alt="image" src="https://github.com/user-attachments/assets/d0266379-6154-49a7-8f58-3933d5e4c2c9" />
 
-2. **Get Incident**
-
-   * Pulls full incident metadata.
-
-3. **Compose Entities**
+2. **Compose Entities**
 
    * Extracts involved usernames, file hashes, and device names.
+   <img width="562" height="249" alt="image" src="https://github.com/user-attachments/assets/46c5be6e-c2d8-47a7-8681-abd995f85444" />
 
-4. **Filter Array**
-
-   * Filters down to devices involved in macro execution.
-
-5. **Get Auth Token (MDE)**
+3. **Get Auth Token (MDE)**
 
    * Performs secure OAuth token retrieval for API use.
+    <img width="568" height="557" alt="image" src="https://github.com/user-attachments/assets/afe7acbe-acce-4e14-a09b-cc419b004e02" />
 
-6. **Restrict App Execution**
+4. **Restrict App Execution**
 
    * Applies "Attack Surface Reduction" tagging via Defender API.
+   <img width="568" height="496" alt="image" src="https://github.com/user-attachments/assets/63cac163-97bf-4e0d-b744-5f354ce2bb2b" />
 
-7. **Run AV Scan**
+5. **Run AV Scan**
 
    * Forces a Defender Antivirus scan remotely on affected endpoint.
+  <img width="571" height="501" alt="image" src="https://github.com/user-attachments/assets/9894a305-1184-4b89-9803-08133d103db1" />
 
-8. **Send Email (V2)**
+6. **Send Email (V2)**
 
    * Notifies the affected user that a suspicious macro was executed.
+   <img width="566" height="562" alt="image" src="https://github.com/user-attachments/assets/d7cc5778-325f-4fea-8adb-fbb75a5646a3" />
 
-9. **Discord Alert**
+7. **Discord Alert**
 
    * Sends alert to SOC team via webhook with incident title and user/machine context.
+   <img width="562" height="763" alt="image" src="https://github.com/user-attachments/assets/520889e0-cc47-462c-bd9f-412a22c5761d" />
 
-10. **Upload SHA256 to Threat Intelligence**
+8. **Get File Statistics**
 
-* Automatically extracts file hash and uploads it to Sentinel's custom threat intelligence table.
+   * Extracts the SHA256 hash from the malicous macro file.
+   <img width="564" height="521" alt="image" src="https://github.com/user-attachments/assets/0414df55-3bc7-4766-b81e-893b0fb8be71" />
+
+9. **Upload SHA256 to Threat Intelligence**
+
+   * Automatically extracts file hash from the "Get File Statistics" step and uploads it to Sentinel's custom threat intelligence table.
+   <img width="563" height="778" alt="image" src="https://github.com/user-attachments/assets/6cb5f94d-1d7a-48ad-9a48-066e2e63cd43" />
 
 ### 📊 Screenshots
 
@@ -359,7 +369,7 @@ Responds to LOLBins or credential tools accessing `lsass.exe`, commonly used in 
 
 | Threat Scenario           | Detection Source    | Remediation Actions                              |
 | ------------------------- | ------------------- | ------------------------------------------------ |
-| Malicious Macros          | FileHash + Command  | Tag, AV scan, Notify, TI upload                  |
+| Malicious Macros          | FileHash + Command  | Tag, AV scan, Notify, TI upload, Block Hash      |
 | Reverse Shell Activity    | CommandLine Pattern | Isolate, Disable, Alert, Upload IOC              |
 | Immediate Priv Escalation | Group Add Events    | Remove rights, Disable, Notify, Threat Tagging   |
 | LSASS Dump Attempt        | LOLBin + LSASS Ref  | Isolate, Disable, Reset, Comment + Discord alert |
