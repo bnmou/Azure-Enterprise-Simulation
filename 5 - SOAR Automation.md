@@ -13,7 +13,7 @@ Each Logic App was carefully constructed with exact permissions, robust API auth
 
 ---
 
-## 🔹 Playbook: MacroExecution AutoResponse Playbook
+## 🔹 Playbook: MacroExecution
 
 <details>
 <summary><strong>🔍 Malicious Macro Auto-Response</strong></summary>
@@ -123,7 +123,7 @@ Triggers when a `.docm` file containing a malicious macro is executed, initiatin
 
 ---
 
-## 🔹 Playbook: ReverseShell Containment AutoResponse Playbook
+## 🔹 Playbook: ReverseShell Containment
 
 <details>
 <summary><strong>🔴 Reverse Shell Detection & Remediation</strong></summary>
@@ -226,7 +226,7 @@ Detects and responds to reverse shell attempts launched using Windows LOLBins li
 
 ---
 
-## 🔹 Playbook: Suspicious Privilege Escalation AutoResponse Playbook
+## 🔹 Playbook: Suspicious Privilege Escalation
 
 <details>
 <summary><strong>👤 New User with Immediate Admin Privileges</strong></summary>
@@ -315,25 +315,27 @@ Flags and auto-restricts new accounts that are granted administrator rights with
 ### 📊 Screenshots
 
 * *Playbook operating successfully*
-  ![Success](./screenshots/phase5/suspriv%20playbook%20operating%20successfully.png)
-
+  <img width="1912" height="962" alt="suspriv playbook operating successfully" src="https://github.com/user-attachments/assets/5e608bcb-8a16-4825-93b6-a2660bf8e962" />
+  <img width="1912" height="962" alt="suspriv closeup of playbook with explanation of each step and what they do" src="https://github.com/user-attachments/assets/c9367e53-0e4e-4b24-938a-6c76f237c295" />
+   
 * *Discord alert to SOC team*
-  ![Discord](./screenshots/phase5/suspriv%20playbook%20discord%20alert.png)
+   <img width="1255" height="400" alt="suspriv playbook discord alert" src="https://github.com/user-attachments/assets/55007ae3-7439-4c3a-9b61-9a294021ff90" />
 
 * *Dual email notifications (SOC + User)*
-  ![Emails](./screenshots/phase5/suspriv%20ontop%20of%20our%20regular%20user%20alert%20email%20we%20also%20have%20analyst%20alert%20emails%20for%20soar%20actions%20taken%20on%20sus%20users.png)
+   <img width="1620" height="223" alt="suspriv ontop of our regular user alert email we also have analyst alert emails for soar actions taken on sus users" src="https://github.com/user-attachments/assets/4bb08f7e-ccfe-40bf-bc15-38bfa09078ba" />
 
 * *User removed from local admin group*
-  ![Removed](./screenshots/phase5/suspriv%20users%20successfully%20removed%20from%20admin%20group.png)
+   <img width="1542" height="220" alt="suspriv users successfully removed from admin group" src="https://github.com/user-attachments/assets/561f8486-d5e9-439e-82b7-619a6f871f8c" />
 
 * *Hunting query confirms access revoked*
-  ![Query](./screenshots/phase5/suspriv%20query%20confirms%20users%20removed.png)
+   <img width="1912" height="962" alt="suspriv query confirms users removed" src="https://github.com/user-attachments/assets/62ed6006-262c-413c-a6a8-cb10319389f3" />
 
 * *Comment added to incident*
-  ![Comment](./screenshots/phase5/suspriv%20comments%20added%20to%20incident%20for%20analysts.png)
+  
+   <img width="769" height="734" alt="suspriv comments added to incident for analysts" src="https://github.com/user-attachments/assets/7081d99c-47fd-4a04-beaf-897be00e8efc" />
 
 * *Usernames uploaded to threat intel*
-  ![TI](./screenshots/phase5/suspriv%20sus%20accounts%20added%20to%20threat%20intel.png)
+   <img width="1912" height="962" alt="suspriv sus accounts added to threat intel" src="https://github.com/user-attachments/assets/42a4444b-3d35-4469-a581-49905bb7bb28" />
 
 ### 🧠 Key Takeaways (Privilege Escalation Scenario)
 
@@ -345,7 +347,7 @@ Flags and auto-restricts new accounts that are granted administrator rights with
 
 ---
 
-## 🔹 Playbook: LSASS\_Access\_AutoResponse\_Playbook
+## 🔹 Playbook: LSASS Access
 
 <details>
 <summary><strong>❇️ Credential Dumping (LSASS Defense)</strong></summary>
