@@ -461,12 +461,4 @@ Responds to LOLBins (`Rundll32, Comsvcs.dll`) or credential tools accessing `lsa
 
 ---
 
-## 🚀 Phase 6 Preview: Detection Engineering & Reporting
-
-Next, I will correlate all triggered incidents into a custom **Microsoft Sentinel workbook**, linking:
-
-* Playbook responses
-* Threat intel matches
-* Endpoint telemetry
-
-Stay tuned!
+**Next Phase:** [Phase 6 – Threat Hunting](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/6%20-%20Threat%20Hunting.md)
