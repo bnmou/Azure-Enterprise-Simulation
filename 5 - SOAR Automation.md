@@ -123,7 +123,7 @@ Triggers when a `.docm` file containing a malicious macro is executed, initiatin
 
 ---
 
-## 🔹 Playbook: RevShell\_AutoResponse\_Playbook
+## 🔹 Playbook: ReverseShell Containment AutoResponse Playbook
 
 <details>
 <summary><strong>🔴 Reverse Shell Detection & Remediation</strong></summary>
@@ -226,7 +226,7 @@ Detects and responds to reverse shell attempts launched using Windows LOLBins li
 
 ---
 
-## 🔹 Playbook: SuspiciousPrivilegeEscalation\_Playbook
+## 🔹 Playbook: Suspicious Privilege Escalation AutoResponse Playbook
 
 <details>
 <summary><strong>👤 New User with Immediate Admin Privileges</strong></summary>
@@ -246,45 +246,70 @@ Flags and auto-restricts new accounts that are granted administrator rights with
 
 **Step-by-Step Breakdown**:
 
+📸*Playbook Overview*
+<img width="1912" height="962" alt="suspriv playbook overview" src="https://github.com/user-attachments/assets/bb4e7cf5-c67f-4e1b-9cdb-7563d0718201" />
+
 1. **Get Incident**
 
-   * Gathers entities involved: users and their timestamps.
+   📸*Gathers entities involved: users and their timestamps.*
+   
+   <img width="564" height="402" alt="image" src="https://github.com/user-attachments/assets/a3d55756-40fb-4de5-b714-34943a22ace8" />
 
-2. **Compose Entities**
+3. **Compose Entities**
 
-   * Parses usernames and roles.
+   📸*Parses usernames and roles.*
+   
+   <img width="558" height="375" alt="image" src="https://github.com/user-attachments/assets/fcbb9210-afe3-4d81-8c6b-2b9fe497aaaa" />
 
-3. **Filter Array + Known Users**
+5. **Filter Array + Known Users**
 
-   * Filters out legitimate admin accounts (e.g., `barbara.hr`, `wayneadmin`)
+   📸*Filters out entities for UserAccounts.*
+   
+   <img width="564" height="346" alt="image" src="https://github.com/user-attachments/assets/edab300a-699d-4a33-91f4-425ebfc92c2c" />
 
-4. **Discord Alert**
+   📸*Creates an array labeled `Filtered Usernames` to be utilized in a later loop.*
+   
+   <img width="562" height="385" alt="image" src="https://github.com/user-attachments/assets/e5a2119c-d109-4356-b406-cc5f4a1b1913" />
 
-   * Sends alert on risky admin assignment.
+   📸*For Each loop filters out legitimate admin accounts (e.g., `barbara.hr`, `wayneadmin`) and appends suspicious UserAccounts to `Filtered Usernames`*
+   
+   <img width="565" height="802" alt="image" src="https://github.com/user-attachments/assets/a2d06fb2-fafd-4f31-a327-357cd4cc5aee" />
 
-5. **Email Notification (SOC)**
+7. **Discord Alert**
 
-   * Notifies analysts for review and audit.
+   📸*Sends alert on risky admin assignment.*
+   
+    <img width="563" height="802" alt="image" src="https://github.com/user-attachments/assets/913bb1ee-e31c-4fbe-8b4e-6907da86b0ce" />
 
-6. **Get Auth Token**
+9. **Email Notification (SOC)**
 
-   * Grants token for Defender script execution.
+   📸*Notifies analysts for review and audit.*
+   
+   <img width="569" height="557" alt="image" src="https://github.com/user-attachments/assets/0b33e503-2bfd-4d25-ab73-da1ae6a3c1c4" />
 
-7. **For Each Filtered User**
+11. **Get Auth Token**
 
-   * Runs live response script to:
+   📸*Grants token for Defender script execution.*
+   
+   <img width="565" height="555" alt="image" src="https://github.com/user-attachments/assets/063945d2-d7ec-4879-bc07-3d9f2040ef23" />
 
-     * Remove from local Admin group
-     * Add registry restrictions
-     * Disable account
+11. **For Each Filtered User**
 
-8. **Add Comment to Incident**
+   📸*Runs live response script to remove from local admin group and disable account*
+   
+   <img width="565" height="655" alt="image" src="https://github.com/user-attachments/assets/b6695289-95cd-4304-8189-149fb508a623" />
 
-   * Documents SOAR action timeline.
+11. **Add Comment to Incident**
 
-9. **Upload Username to Threat Intel**
+    📸*Documents SOAR action timeline.*
+     
+    <img width="568" height="512" alt="image" src="https://github.com/user-attachments/assets/d34a3275-b621-4aa2-b725-36e187aa3ec3" />
 
-   * Flags user as possible persistence vector.
+11. **Upload Usernames to Threat Intel and notify analysts via email**
+     
+     📸*Flags user as possible persistence vector.*
+    
+     <img width="566" height="801" alt="image" src="https://github.com/user-attachments/assets/80bac710-5cd8-4ac6-b348-9310a364395e" />
 
 ### 📊 Screenshots
 
