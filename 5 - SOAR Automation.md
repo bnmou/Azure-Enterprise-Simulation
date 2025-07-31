@@ -99,6 +99,7 @@ Triggers when a `.docm` file containing a malicious macro is executed, initiatin
 
 * *Playbook operating successfully*
   <img width="1912" height="962" alt="Macro playbook operating successfully" src="https://github.com/user-attachments/assets/74cf4803-5cd8-4ae7-8dd8-d224f3a36e7d" />
+  <img width="1912" height="962" alt="macro close up of playbook with explanation of each step and their purpose" src="https://github.com/user-attachments/assets/01686526-93ff-4980-a036-86cda332265b" />
 
 * *Device tagged and AV scan launched*
   <img width="1912" height="962" alt="macro machine tagged and AV scan conducted" src="https://github.com/user-attachments/assets/d8dba25f-f6fd-4543-beb6-c48db99e5b92" />
@@ -129,7 +130,7 @@ Triggers when a `.docm` file containing a malicious macro is executed, initiatin
 
 ### 🔐 Purpose
 
-Detects and responds to reverse shell attempts launched using Windows LOLBins like PowerShell, `cmd.exe`, or encoded base64 payloads.
+Detects and responds to reverse shell attempts launched using Windows LOLBins like Rundll32, Comsvcs.dll, PowerShell, `cmd.exe`, or encoded base64 payloads.
 
 ### ⚙️ Logic App Breakdown
 
@@ -142,62 +143,83 @@ Detects and responds to reverse shell attempts launched using Windows LOLBins li
 
 **Step-by-Step Breakdown**:
 
+📸*Playbook Overview*
+<img width="1912" height="962" alt="RevShell Playbook overview" src="https://github.com/user-attachments/assets/71b3dbf4-a4e4-4742-910e-7ed5a6f651c5" />
+
 1. **Get Incident**
 
-   * Pulls full context, including entities like command line and username.
+   📸*Pulls full context, including entities like command line and username.*
+   
+   <img width="562" height="404" alt="image" src="https://github.com/user-attachments/assets/26bb59c0-9c16-4cb7-a71e-2d29ac2aa95d" />
 
-2. **Filter Shell Command Lines**
+2. **Compose Entities**
 
-   * Parses for known reverse shell patterns (e.g., `powershell -nop -enc`, `bash -i`)
+   📸*Parses for specific entities to be used later on in the playbook like obfuscated Shell Commands.*
+   
+   <img width="568" height="362" alt="image" src="https://github.com/user-attachments/assets/bd2b5b4a-0b34-4a49-b652-e0545021e121" />
 
 3. **Discord Alert**
 
-   * Sends enriched alert to SOC team.
+   📸*Sends enriched alert to SOC team.*
+   
+   <img width="566" height="781" alt="image" src="https://github.com/user-attachments/assets/ee6d681f-7671-4a7c-9a94-5355502f2f9a" />
 
 4. **Email Notification**
 
-   * Notifies the user who launched the process.
+   📸*Notifies the user who launched the process.*
+   
+   <img width="568" height="553" alt="image" src="https://github.com/user-attachments/assets/c47ddb81-8ff4-4317-9eda-3b90a6a5a346" />
 
 5. **Get Auth Token**
+ 
+   📸*Required for script deployment.*
+   
+   <img width="562" height="536" alt="image" src="https://github.com/user-attachments/assets/5bb4c0e6-b191-4589-941a-a7b620130853" />
+ 
+6. **Run Live Response Script** (`KillPowerShell.ps1`)
 
-   * Required for script deployment.
-
-6. **Run Live Response Script** (`DisableShellUser.ps1`)
-
-   * Disables account, sets password reset flag, and removes from local admin group.
-
+   📸*Kills all instances of PowerShell running on the machine including any established Reverse Shells currently running.*
+   
+   <img width="566" height="719" alt="image" src="https://github.com/user-attachments/assets/0a3bc80d-5f59-4070-b17e-1b7f0246906e" />
+  
 7. **Isolate and Tag Machine**
-
-   * Full network isolation + tag added.
-
+   
+   📸*Full network isolation + tag added.*
+   
+   <img width="567" height="498" alt="image" src="https://github.com/user-attachments/assets/ebfe924a-86a1-402b-be44-72915622e609" />
+   <img width="569" height="476" alt="image" src="https://github.com/user-attachments/assets/cf358999-70a4-4b17-9e5d-bdc6c2bc22a7" />
+ 
 8. **Upload Command Line IOC**
 
-   * Adds base64 reverse shell payload as custom IOC to Threat Intelligence.
+   📸*Adds base64 encoded reverse shell payload as custom IOC to Threat Intelligence.*
+   
+    <img width="562" height="763" alt="image" src="https://github.com/user-attachments/assets/b1dacc3d-3ad0-44f2-b53d-b231e7a7abd1" />
 
 ### 📊 Screenshots
 
 * *Playbook operating successfully*
-  ![RevShell Success](./screenshots/phase5/revshell%20playbook%20operating%20successfully.png)
+  <img width="1912" height="962" alt="revshell playbook operating successfully" src="https://github.com/user-attachments/assets/5e380a7a-d8cb-4a41-90d0-3229fb0ff8eb" />
+  <img width="1912" height="962" alt="revshell close up of playbook with explanation of each step and their purpose" src="https://github.com/user-attachments/assets/d2f2611c-73a4-4d7b-b6f2-cee3fb27efde" />
 
-* *Discord alert (SpideyBot)*
-  ![Discord](./screenshots/phase5/revshell%20playbook%20discord%20alert.png)
+* *Discord alert with dynamic incident summary*
+  <img width="1249" height="415" alt="revshell playbook discord alert" src="https://github.com/user-attachments/assets/b810d817-6acd-4963-ad57-3776f9da19f2" />
 
 * *User notification email*
-  ![Email](./screenshots/phase5/email%20notification%202.png)
+  <img width="1621" height="317" alt="email notification 2" src="https://github.com/user-attachments/assets/1f7fe8cf-9a83-4c5a-a110-7ac81cb7d8e1" />
 
 * *Machine isolation + tagging confirmed*
-  ![Isolated](./screenshots/phase5/revshell%20machine%20isolated%20and%20tagged.png)
+  <img width="1605" height="209" alt="revshell machine isolated and tagged" src="https://github.com/user-attachments/assets/2f4b8ba2-5e12-445f-b098-036698a12a71" />
 
 * *Live response script executed successfully*
-  ![Live Response](./screenshots/phase5/Revshell%20live%20response%20command%20executed%20successfully.png)
+  <img width="1588" height="286" alt="Revshell live response command executed successfully" src="https://github.com/user-attachments/assets/2398bed0-2c37-4925-83b3-a47cc9e1220d" />
 
 * *Command line added to Threat Intel*
-  ![TI IOC](./screenshots/phase5/revshell%20playbook%20uploaded%20reverse%20shell%20command%20line%20as%20IOC%20to%20threat%20intel.png)
+  <img width="1912" height="962" alt="revshell playbook uploaded reverse shell command line as IOC to threat intel" src="https://github.com/user-attachments/assets/438362e7-9d86-4e01-8e16-9bbb31a26b37" />
 
 ### 🧠 Key Takeaways (Reverse Shell Scenario)
 
 * PowerShell/encoded payloads must be handled surgically to avoid nuking valid usage.
-* Account disablement + password reset adds defense-in-depth alongside isolation.
+* A playbook to swiftly cut off ReverseShell instances adds defense-in-depth alongside isolation.
 * Live response scripts give granular control beyond built-in Defender actions.
 
 </details>
