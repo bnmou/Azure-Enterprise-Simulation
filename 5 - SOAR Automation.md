@@ -423,19 +423,20 @@ Responds to LOLBins (`Rundll32, Comsvcs.dll`) or credential tools accessing `lsa
 ### 📊 Screenshots
 
 * *Playbook run successful*
-  ![Run](./screenshots/phase5/Lsass%20playbook%20operating%20successfully.png)
+  <img width="1912" height="962" alt="Lsass playbook operating successfully" src="https://github.com/user-attachments/assets/a4507f9e-0a86-464f-8523-1b9097ffff66" />
+  <img width="1912" height="962" alt="lsass closeup of playbook with explanation of each step" src="https://github.com/user-attachments/assets/577b3757-eccb-467f-812c-3ff2838617d8" />
 
-* *Discord alert to SpideyBot*
-  ![Discord](./screenshots/phase5/lsass%20playbook%20discord%20alert.png)
+* *Discord alert to SOC*
+  <img width="1231" height="409" alt="lsass playbook discord alert" src="https://github.com/user-attachments/assets/6d493913-53de-4f49-94dd-e4641b7c7d27" />
 
 * *Email alert to affected user*
-  ![Email](./screenshots/phase5/Lsass%20email%20notif.png)
+  <img width="1634" height="410" alt="Lsass email notif" src="https://github.com/user-attachments/assets/de65e4e2-2479-4d23-9576-29fd2ce6c25e" />
 
 * *Machine isolated and tagged*
-  ![Isolated](./screenshots/phase5/lsass%20machine%20isolated%20and%20tagged.png)
+  <img width="1912" height="962" alt="lsass machine isolated and tagged" src="https://github.com/user-attachments/assets/de627a7c-3e3d-4382-aa40-c814aa87bdb7" />
 
 * *Account status verified post-remediation*
-  ![Verification](./screenshots/phase5/lsass%20live%20action%20script%20confirmed%20by%20checking%20account%20status%20on%20domain%20controller%20.png)
+  <img width="787" height="133" alt="lsass live action script confirmed by checking account status on domain controller " src="https://github.com/user-attachments/assets/c7a04eac-6035-4e17-b717-8038ad19c146" />
 
 ### 🧠 Key Takeaways (LSASS Dumping Scenario)
 
