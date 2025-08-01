@@ -309,6 +309,18 @@ Flags and auto-restricts new accounts that are granted administrator rights with
    📸*Runs live response script to remove from local admin group and disable account*
    
    <img width="565" height="655" alt="image" src="https://github.com/user-attachments/assets/b6695289-95cd-4304-8189-149fb508a623" />
+
+   *RevokeAdmin.ps1*
+   ```powershell
+   param (
+       [string]$Username
+   )
+
+   # Disable the account
+   net user $Username /active:no
+
+   # Force password reset on next sign-in
+   net user $Username /logonpasswordchg:yes
    
 8. **Add Comment to Incident**
    
