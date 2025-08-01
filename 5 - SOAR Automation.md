@@ -181,6 +181,16 @@ Detects and responds to reverse shell attempts launched using Windows, PowerShel
    📸*Kills all instances of PowerShell running on the machine including any established Reverse Shells currently running.*
    
    <img width="566" height="719" alt="image" src="https://github.com/user-attachments/assets/0a3bc80d-5f59-4070-b17e-1b7f0246906e" />
+
+   *KillPowerShell.ps1*
+   ```powershell
+   Get-Process powershell, pwsh -ErrorAction SilentlyContinue | ForEach-Object {
+       try {
+           Stop-Process -Id $_.Id -Force
+       } catch {
+           Write-Output "Could not terminate process ID $($_.Id)"
+       }
+   }
   
 7. **Isolate and Tag Machine**
    
