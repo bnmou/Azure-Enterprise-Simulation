@@ -319,8 +319,8 @@ Flags and auto-restricts new accounts that are granted administrator rights with
    # Disable the account
    net user $Username /active:no
 
-   # Force password reset on next sign-in
-   net user $Username /logonpasswordchg:yes
+   # Remove user from local administrators group
+   net localgroup administrators $Username /delete
    
 8. **Add Comment to Incident**
    
@@ -430,12 +430,24 @@ Responds to LOLBins (`Rundll32, Comsvcs.dll`) or credential tools accessing `lsa
     <img width="566" height="478" alt="image" src="https://github.com/user-attachments/assets/c276edb1-d9eb-44d1-8ffb-21a3dbd7dcf3" />
     <img width="563" height="508" alt="image" src="https://github.com/user-attachments/assets/7f9f3113-76df-403a-afad-b25cc28833e4" />
    
-7. **Run Live Response Script** (`RestrictLSASSUser.ps1`)
+7. **Run Live Response Script**
    
     📸*Disables user & forces password reset on next logon.*
     
     <img width="566" height="656" alt="image" src="https://github.com/user-attachments/assets/1345d189-bdd4-4e77-bf24-ecaeb80bc5f7" />
-   
+
+    *RestrictLSASSUser.ps1*
+    ```powershell
+   param (
+       [string]$Username
+   )
+
+   # Disable the account
+   net user $Username /active:no
+
+   # Force password reset on next sign-in
+   net user $Username /logonpasswordchg:yes
+
 8. **Add Comment to Incident Timeline**
 
     📸*Adds detailed comment to incident.*
