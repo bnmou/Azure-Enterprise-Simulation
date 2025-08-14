@@ -54,7 +54,7 @@ This home lab simulates a real-world enterprise SOC using Microsoft Azure, Senti
 ---
 
 <details>
-<summary><strong>🧭 Phase 6: Threat Hunting</strong></summary>
+<summary><strong>🛰 Phase 6: Threat Hunting</strong></summary>
 
 📄 [View Phase 6 Documentation](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/6%20-%20Threat%20Hunting.md)
 
