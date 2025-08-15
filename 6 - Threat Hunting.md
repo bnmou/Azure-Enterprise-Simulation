@@ -373,30 +373,20 @@ DeviceRegistryEvents
 
 ## 📑 6. IOC Table
 
-| IOC | Type | Description | Source Query | MITRE TTP |
+| Indicator of Compromise | Type | Description | Source Query | MITRE TTP |
 |---|---|---|---|---|
+| 99.000.00.206 | IP Address | External logon source | LogonEvents | T1078 |
 | JokerHeartbeat | Scheduled Task | Persistence mechanism | ProcessEvents | T1053 |
 | JokerTask | Scheduled Task | Executes notepad.exe | ProcessEvents | T1053 |
 | HKCU\Software\Joker | Registry Key | Custom persistence key | ProcessEvents | T1547 |
-| BackdoorSvc | Service | Backdoor service executing calc.exe | ProcessEvents | T1543 |
-| `netsh.exe advfirewall ...` | Command | Allows inbound Notepad | ProcessEvents | T1562 |
-| mshta.exe vbscript execution | LOLBin Abuse | Executes calc.exe | ProcessEvents | T1218 |
-| regsvr32.exe /i:calc scrobj.dll | LOLBin Abuse | Executes calc.exe | ProcessEvents | T1218 |
-| whoami.exe /fqdn | Recon | Enumerates domain FQDN | ProcessEvents | T1087 |
-| 99.000.00.206 | IP Address | External logon source | LogonEvents | T1078 |
+| BackdoorSvc | Service | Executes calc.exe via cmd.exe | ProcessEvents | T1543 |
+| netsh.exe advfirewall firewall add rule name="JokerRule" | Command | Allows inbound Notepad | ProcessEvents | T1562 |
+| mshta.exe vbscript:Execute "CreateObject('Wscript.Shell').Run 'calc.exe'" | LOLBin Abuse | Executes calc.exe | ProcessEvents | T1218 |
+| regsvr32.exe /s /u /i:calc scrobj.dll | LOLBin Abuse | Executes calc.exe | ProcessEvents | T1218 |
+| schtasks.exe /create /sc minute /mo 1 /tn JokerHeartbeat /tr "calc.exe" | Command | Scheduled task for persistence | ProcessEvents | T1053 |
+| schtasks.exe /create /sc once /tn JokerTask /tr "notepad.exe" /st 00:00 | Command | One-time task execution | ProcessEvents | T1053 |
+| sc.exe create BackdoorSvc binPath= "cmd.exe /c calc.exe" | Command | Service-based persistence | ProcessEvents | T1543 |
 
-```
-IOC,Type,Description,Source Query,MITRE TTP
-JokerHeartbeat,Scheduled Task,Persistence mechanism,ProcessEvents,T1053
-JokerTask,Scheduled Task,Executes notepad.exe,ProcessEvents,T1053
-HKCU\Software\Joker,Registry Key,Custom persistence key,ProcessEvents,T1547
-BackdoorSvc,Service,Backdoor service executing calc.exe,ProcessEvents,T1543
-netsh.exe advfirewall ...,Command,Allows inbound Notepad,ProcessEvents,T1562
-mshta.exe vbscript execution,LOLBin Abuse,Executes calc.exe,ProcessEvents,T1218
-regsvr32.exe /i:calc scrobj.dll,LOLBin Abuse,Executes calc.exe,ProcessEvents,T1218
-whoami.exe /fqdn,Recon,Enumerates domain FQDN,ProcessEvents,T1087
-99.157.17.206,IP Address,External logon source,LogonEvents,T1078
-```
 </details>
 
 ---
