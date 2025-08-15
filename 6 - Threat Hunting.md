@@ -489,20 +489,6 @@ friendly_location = strcat(cityname, " (", countryname, ")");
 - **Isolate** affected endpoints for **forensics**.  
 - **Create** Sentinel detection rule for any `"joker"` account activity.
 
-<details>
-<summary><strong>💡 Detection Suggestion (KQL stub)</strong></summary>
-
-```kql
-union isfuzzy=true
-    DeviceLogonEvents,
-    DeviceProcessEvents,
-    DeviceRegistryEvents,
-    DeviceFileEvents
-| where AccountName =~ "joker" or InitiatingProcessAccountName =~ "joker"
-| summarize Count = count(), FirstSeen=min(TimeGenerated), LastSeen=max(TimeGenerated) by AccountName, DeviceName
-| where Count > 0
-```
-Use as an **analytics rule** (scheduled) with appropriate entity mapping and suppression logic.
 </details>
 
 ---
