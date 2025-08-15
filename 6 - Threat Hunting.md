@@ -296,7 +296,15 @@ DeviceFileEvents
 - `T0893` – Archive Collected Data
 
 **Screenshot**
-- `third query after a thorough analysis we found no malicious tampering with any files belonging to wayne enterprises and no unusual activity outside of normal system processes.png`
+- Third threat hunting query looking for unauthorized access to sensitive files
+  <img width="1912" height="962" alt="third threat hunting query looking for suspicious file events" src="https://github.com/user-attachments/assets/aba05f5a-0cd0-4db8-a799-1be1a72bb94f" />
+
+- Third query returned 278 results
+  <img width="1912" height="962" alt="results of third query" src="https://github.com/user-attachments/assets/b6df5865-fde6-4003-9ab6-4515a6fcaeb4" />
+
+- After a thorough analysis, no suspicious activity concerning sensitive file exfiltration was conducted
+  <img width="1912" height="962" alt="third query after a thorough analysis we found no malicious tampering with any files belonging to wayne enterprises and no unusual activity outside of normal system processes" src="https://github.com/user-attachments/assets/bb1b52a8-e362-4152-a86b-0853f3c2c69d" />
+  
 </details>
 
 ---
