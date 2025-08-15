@@ -161,6 +161,11 @@ DeviceLogonEvents
 **Findings**
 - Multiple logons from **unusual remote IP**: `99.***.**.206` (masked in screenshots for privacy).
 
+**Key IOCs (Private IP)**
+```
+99.***.**.206
+```
+
 **MITRE TTPs**
 - `T1078` – Valid Accounts  
 - `T1078.003` – Valid Accounts: Local Accounts  
