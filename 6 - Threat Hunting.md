@@ -399,35 +399,84 @@ Visualize **live malicious activity** targeting our honeypot to correlate extern
 **Implementation Steps**
 1. **Honeypot Deployment & Capture** – Collect unsolicited inbound connection attempts.  
 2. **Export Attacker IPs** – CSV of observed IPs.  
-3. **Sentinel Watchlist** – Create `HoneypotIPs` and upload **55k+ IPs**.  
+3. **Sentinel Watchlist** – Create `HoneypotIPs` and upload **50k+ IPs**.  
 4. **Workbook Query** – Geolocate and plot IPs for a **real-time attack map**.
 
 **Sample KQL (Workbook)**
 ```kql
-let HoneypotIPs = (_GetWatchlist('HoneypotIPs') | project SearchKey);
-Heartbeat
-| where RemoteIP in (HoneypotIPs)
-| extend GeoInfo = geo_info_from_ip_address(RemoteIP)
-| summarize AttemptCount = count() by tostring(GeoInfo.Country), tostring(GeoInfo.City), bin(TimeGenerated, 1h)
-| project TimeGenerated, Country=GeoInfo.Country, City=GeoInfo.City, AttemptCount
+let GeoIPDB_FULL = _GetWatchlist("HoneypotIP");
+let WindowsEvents = DeviceLogonEvents;
+WindowsEvents | where ReportId >= 1
+| order by TimeGenerated desc
+| evaluate ipv4_lookup(GeoIPDB_FULL, RemoteIP, network)
+| summarize FailureCount = count() by RemoteIP, latitude, longitude, cityname, countryname
+| project FailureCount, AttackerIp = RemoteIP, latitude, longitude, city = cityname, country = countryname,
+friendly_location = strcat(cityname, " (", countryname, ")");
 ```
 
 <details>
 <summary><strong>📷 Screenshot References</strong></summary>
 
-- `We will now create a watchlist for IPs we have recorded from one of our honeypots to create an attack map.png`  
-- `overview of the IPs we imported from our honeypot.png`  
-- `Final overview of watchlist creation.png`  
-- `HoneypotIPs added and uploaded to watchlist with 55k results.png`  
-- `Query for our live attack map workbook referencing our honeypot attacker data csv.png`  
-- `we now have a fully functional and live attack map referencing our honeypot data.png`
+- Creating a watchlist from the IPs attacking our honeypot
+  <img width="1900" height="952" alt="We will now create a watchlist for IPs we have recorded from one of our honeypots to create an attack map" src="https://github.com/user-attachments/assets/fd4eb42f-ad5b-48d0-83dd-67e267a59f2b" />
+
+- Overview of the imported IPs
+  <img width="1892" height="988" alt="overview of the IPs we imported from our honeypot" src="https://github.com/user-attachments/assets/d116a490-c2b5-4c28-bb3e-6537deaee51f" />
+
+- Final overview of the watchlist creation
+  <img width="1887" height="942" alt="Final overview of watchlist creation" src="https://github.com/user-attachments/assets/01402bbe-d5f1-40c5-80f7-edefb2c1c7f8" />
+
+- Honeypot IPs uploaded to our watchlist
+  <img width="1890" height="959" alt="HoneypotIPs added and uploaded to watchlist with 55k results" src="https://github.com/user-attachments/assets/b3c19fb4-6f43-46fc-9d4d-a6d498bcaa59" />
+
+- Query for our live attack map referencing our Honeypot IP csv file
+  <img width="1911" height="952" alt="Query for our live attack map workbook referencing our honeypot attacker data csv" src="https://github.com/user-attachments/assets/75964621-c3e6-420f-a607-0bc707eb7464" />
+
+- We now have a fully functional attack map for our Honeypot
+  <img width="1908" height="813" alt="we now have a fully functional and live attack map referencing our honeypot data" src="https://github.com/user-attachments/assets/e05cb147-16f5-4c34-ad2c-17d09874b75b" />
+
 </details>
 
 <details>
 <summary><strong>🛠️ Notes</strong></summary>
 
-- Ensure watchlist column used in `project SearchKey` matches your CSV header.  
-- If your telemetry table differs from `Heartbeat`, adjust the `where` clause to the table that contains `RemoteIP`.
+- The `JSON` used for the attack map
+```json
+{
+  "type": 3,
+  "content": {
+    "version": "KqlItem/1.0",
+    "query": "let GeoIPDB_FULL = _GetWatchlist(\"HoneypotIP\");\nlet WindowsEvents = DeviceLogonEvents;\nWindowsEvents | where ReportId >= 1\n| order by TimeGenerated desc\n| evaluate ipv4_lookup(GeoIPDB_FULL, RemoteIP, network)\n| summarize FailureCount = count() by RemoteIP, latitude, longitude, cityname, countryname\n| project FailureCount, AttackerIp = RemoteIP, latitude, longitude, city = cityname, country = countryname,\nfriendly_location = strcat(cityname, \" (\", countryname, \")\");",
+    "size": 3,
+    "timeContext": {
+      "durationMs": 9072000000,
+      "endTime": "2025-08-14T18:58:00.000Z"
+    },
+    "queryType": 0,
+    "resourceType": "microsoft.operationalinsights/workspaces",
+    "visualization": "map",
+    "mapSettings": {
+      "locInfo": "LatLong",
+      "locInfoColumn": "countryname",
+      "latitude": "latitude",
+      "longitude": "longitude",
+      "sizeSettings": "FailureCount",
+      "sizeAggregation": "Sum",
+      "opacity": 0.8,
+      "labelSettings": "friendly_location",
+      "legendMetric": "FailureCount",
+      "legendAggregation": "Sum",
+      "itemColorSettings": {
+        "nodeColorField": "FailureCount",
+        "colorAggregation": "Sum",
+        "type": "heatmap",
+        "heatmapPalette": "greenRed"
+      }
+    }
+  },
+  "name": "query - 0"
+}
+```
 </details>
 
 ---
