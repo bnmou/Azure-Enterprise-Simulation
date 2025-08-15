@@ -1,6 +1,6 @@
 # 🛰 Phase 6: Threat Hunting
 
-## Objectives
+## ✅ Objectives
 
 1. Build and automate a **Live Threat Intelligence Feed** from AlienVault OTX into Microsoft Sentinel.
 
