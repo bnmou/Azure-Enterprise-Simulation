@@ -312,7 +312,7 @@ DeviceFileEvents
 <details>
 <summary><strong>🔍 Query 4 – DeviceRegistryEvents (Registry Persistence)</strong></summary>
 
-> Result: **No suspicious registry changes detected.**
+> Result: **Apart from the first registry modification we detected during our second query, no additional registry changes were identified.**
 
 ```kql
 DeviceRegistryEvents
@@ -327,9 +327,15 @@ DeviceRegistryEvents
 - `T1112` – Modify Registry
 
 **Screenshots**
-- `fourth query looking for changes made to the registry by Joker.png`  
-- `fourth query results.png`  
-- `fourth query shows no signs of registry changes.png`
+- Fourth threat hunting query looking for additional changes made to the registry
+  <img width="1912" height="962" alt="fourth query looking for changes made to the registry by Joker" src="https://github.com/user-attachments/assets/41f3e94a-686f-4246-a0e4-e305a3cb14f1" />
+
+- Fourth query returned 30 results
+  <img width="1912" height="962" alt="fourth query results" src="https://github.com/user-attachments/assets/e3b48ba5-7dbb-4621-9646-c5d350e4bca2" />
+
+- After a thorough investigation, no additional registry changes were made
+  <img width="1912" height="962" alt="fourth query shows no signs of registry changes" src="https://github.com/user-attachments/assets/51196305-2fff-4838-8c0e-b155146bc2d3" />
+
 </details>
 
 ---
