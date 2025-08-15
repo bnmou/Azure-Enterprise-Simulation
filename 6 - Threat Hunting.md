@@ -498,3 +498,6 @@ friendly_location = strcat(cityname, " (", countryname, ")");
 - No confirmed **file staging** or **registry** persistence within the window.  
 - Hardened account controls and established **detections** for rapid response.
 
+---
+
+**Next Phase:** [Phase 7 – Incident Response](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/6%20-%20Threat%20Hunting.md)
