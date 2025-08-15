@@ -159,7 +159,7 @@ DeviceLogonEvents
 ```
 
 **Findings**
-- Multiple logons from **unusual remote IP**: `99.157.17.206` (masked in screenshots for privacy).
+- Multiple logons from **unusual remote IP**: `99.***.**.206` (masked in screenshots for privacy).
 
 **MITRE TTPs**
 - `T1078` – Valid Accounts  
@@ -169,10 +169,18 @@ DeviceLogonEvents
 - `T0859` – Access Tokens *(token-oriented misuse during sessions)*
 
 **Screenshots**
-- `first threat hunting query looking for login instances of Joker with entity mapping.png`  
-- `results of first query.png`  
-- `results of first query continued with IP not shown for privacy reasons.png`  
-- `first query type of data we are interested in like the remote IP account name login type and time and the device.png`
+- First threat hunting query looking for logon activity from `Joker`
+  <img width="1906" height="980" alt="First threat hunting query looking for login instances of Joker with entity mapping" src="https://github.com/user-attachments/assets/ccc29733-2fe9-4713-b5b1-a37fe7d62d1b" />
+
+- 26 results from our first query
+  <img width="1907" height="948" alt="results of first query" src="https://github.com/user-attachments/assets/ced6a5d4-fd5c-4409-8ce8-f95750723c91" />
+
+- Logs generated from our first query show suspicious logon activity from an unusual IP address
+  <img width="1826" height="736" alt="results of first query continued with IP not shown for privacy reasons" src="https://github.com/user-attachments/assets/cbf3ee44-0e70-41e1-a7ef-2bf8e5b3778a" />
+
+- Suspicious IP will be marked as an IOC related to `Joker` logon activity
+  <img width="1746" height="390" alt="first query type of data we are interested in like the remote IP account name login type and time and the device" src="https://github.com/user-attachments/assets/1d3d7db8-1db4-4eff-8ed6-ead922d816e5" />
+
 </details>
 
 ---
