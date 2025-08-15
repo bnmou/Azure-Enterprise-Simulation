@@ -207,14 +207,22 @@ DeviceProcessEvents
 - LOLBins abused: `regsvr32.exe`, `mshta.exe`  
 - Registry persistence activity: `reg.exe`
 
-**Key IOCs (Commands)**
+**Key IOCs (Commands, task names, registry)**
 ```
-schtasks.exe /create /sc minute /mo 1 /tn JokerHeartbeat /tr "calc.exe"
-schtasks.exe /create /sc once /tn JokerTask /tr "notepad.exe" /st 00:00
-sc.exe create BackdoorSvc binPath= "cmd.exe /c calc.exe"
-netsh.exe advfirewall firewall add rule name="JokerRule" dir=in action=allow program="C:\Windows\System32\notepad.exe" enable=yes
-mshta.exe vbscript:Execute "CreateObject(""Wscript.Shell"").Run ""calc.exe"""
-regsvr32.exe /s /u /i:calc scrobj.dll
+Task name: JokerHeartbeat
+Task name: JokerTask
+Registry: HKCU\Software\Joker
+Command line: "cmd.exe" /q /c del /q "C:\Program Files\Microsoft Office\root\vfs\ProgramFilesCommonX64\Microsoft Shared\OFFICE16\Addins\UmOutlookAddin.dll"
+Command line: sc.exe create BackdoorSvc binPath= "cmd.exe /c calc.exe"
+Command line: schtasks.exe /create /sc minute /mo 1 /tn JokerHeartbeat /tr "calc.exe"
+Command line: schtasks.exe /create /sc once /tn JokerTask /tr "notepad.exe" /st 00:00
+Command line: netsh.exe advfirewall firewall add rule name="JokerRule" dir=in action=allow program="C:\Windows\System32\notepad.exe" enable=yes
+Command line: netsh.exe advfirewall firewall delete rule name="JokerRule"
+Command line: regsvr32.exe /s /u /i:calc scrobj.dll
+Command line: mshta.exe vbscript:Execute "CreateObject(""Wscript.Shell"").Run ""calc.exe"""
+Command line: reg.exe add HKCU\Software\Joker /v Key1 /t REG_SZ /d Value1
+Command line: cmd.exe /c echo Joker was here > C:\Temp\joker.txt
+Command line: whoami.exe /fqdn
 ```
 
 **MITRE TTPs**
@@ -226,12 +234,45 @@ regsvr32.exe /s /u /i:calc scrobj.dll
 - `T0863` – Abuse Elevation Control Mechanism *(if UAC bypass attempted)*
 
 **Screenshots**
-- `second threat hunting query looking for process file events created by Joker.png`  
-- `second query persistance with scheduled task.png`  
-- `second query another scheduled task to run malicous Joker Task.png`  
-- `second query backdoor service creation for persistance.png`  
-- `second query LOLBin being used to masquerade a service.png`  
-- `second query suspicious folder path as legitimate windows process svchost is being run from temp folder .png`
+- Second threat hunting query looking for process file events created by Joker
+  <img width="1870" height="770" alt="second threat hunting query looking for process file events created by Joker" src="https://github.com/user-attachments/assets/f2256420-7a76-4fec-a8b4-096223ec3b02" />
+
+- Our second query returned 155 results
+  <img width="1904" height="944" alt="results of second query" src="https://github.com/user-attachments/assets/e7773cb0-e1e3-4b78-b756-a80f727049d7" />
+
+- Log showing file deletion activity from `runonce.exe`
+  <img width="1752" height="490" alt="second query first potentially suspicious thing we find is CMD launched from runonceexe deleting microsoft files " src="https://github.com/user-attachments/assets/02d40d1d-a7b7-45e9-8479-b1f87b692c7c" />
+
+- Log showing potential backdoor creation and attacker calling card
+   <img width="1757" height="486" alt="second query more suspicious activity with a potential backdoor and attacker signature" src="https://github.com/user-attachments/assets/f3ecf67e-790f-42d8-bfc2-7f730eaf962f" />
+
+- Detection evasion activity
+  <img width="1752" height="492" alt="second query immediately followed up with detection evasion trying to clean up their trail" src="https://github.com/user-attachments/assets/422cc89c-1ee5-41f0-b5cc-2d4c632126ab" />
+
+- `JokerHeartbeat` scheduled task created for persistence
+  <img width="1757" height="492" alt="second query persistance with scheduled task" src="https://github.com/user-attachments/assets/3d3b1d80-e9a7-4b80-894e-1d4134d3997c" />
+
+- Legitimate windows service running from `Local/Temp` folder indicative of classic masquerading & process injection techniques
+  <img width="1757" height="491" alt="second query suspicious folder path as legitimate windows process svchost is being run from temp folder " src="https://github.com/user-attachments/assets/8cb169f0-829c-4b3f-8d3d-ea484a8cd4aa" />
+
+- Log showing more suspicious LOLBin activity
+  <img width="1753" height="492" alt="second query LOLBin being used to masquerade a service" src="https://github.com/user-attachments/assets/9ee41421-2b60-4ac6-aead-7df6ac2a53d5" />
+
+- Our attacker utilizing more LOLBin techniques to disguise potentially malicious activity
+  <img width="1757" height="492" alt="second query another LOLBin being used" src="https://github.com/user-attachments/assets/08e0b38a-3b6c-4b83-9726-f8ff5fddfd90" />
+
+- Registry modification by `Joker` account
+  <img width="1752" height="482" alt="second query registry being modified by Joker" src="https://github.com/user-attachments/assets/5a714f83-a0b8-4648-88d8-5812e595e348" />
+
+- Scheduled task set to run potentially malicious `JokerTask`
+  <img width="1761" height="497" alt="second query another scheduled task to run malicous Joker Task" src="https://github.com/user-attachments/assets/567fe59c-99c3-44f0-9db8-1e7e617153f8" />
+
+- `Joker` account manipulating firewall rules
+  <img width="1751" height="493" alt="second query Joker manipulating firewall rules" src="https://github.com/user-attachments/assets/79869595-2cbf-42cb-ae15-28290d2f2793" />
+
+- More LOLBin abuse by `Joker` to execute malicious DLL payloads without dropping an obvious EXE payload
+  <img width="1748" height="486" alt="second query powershell interacting with rundll32 in unusual manner" src="https://github.com/user-attachments/assets/987a5afa-0a7c-4827-8dfe-fdac0da6a6b0" />
+
 </details>
 
 ---
