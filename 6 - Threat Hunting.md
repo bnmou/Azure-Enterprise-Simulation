@@ -1,14 +1,22 @@
 # 🛰 Phase 6: Threat Hunting
 
-## 📌 Table of Contents
-1. [Live Threat Intelligence Feed (OTX Integration)](#1-live-threat-intelligence-feed-otx-integration)
-2. [SQR3 Hypothesis Framework](#2-sqr3-hypothesis-framework)
-3. [KQL Hunting Queries & Results](#3-kql-hunting-queries--results)
-4. [Chronological Timeline of Attacker Actions](#4-chronological-timeline-of-attacker-actions)
-5. [Correlation Analysis](#5-correlation-analysis)
-6. [IOC Table](#6-ioc-table)
-7. [Global Threat Map (Honeypot Integration)](#7-global-threat-map-honeypot-integration)
-8. [Final Containment & Remediation Actions](#8-final-containment--remediation-actions)
+## Objectives
+
+1. Build and automate a **Live Threat Intelligence Feed** from AlienVault OTX into Microsoft Sentinel.
+
+2. Apply the **SQR3 Hypothesis Framework** (State, Question, Refine, Review, Report) to hunt the `JOKER` account.
+
+3. Run multiple **KQL hunting queries** for logons, processes, file activity, and registry changes.
+
+4. Create a **chronological timeline** of attacker actions.
+
+5. Perform **correlation analysis** between events.
+
+6. Compile a comprehensive **IOC table** with all commands, IPs, registry keys, and scheduled tasks.
+
+7. Deploy a **Global Threat Map** using honeypot data.
+
+8. Execute **final containment and remediation actions**.
 
 ---
 
@@ -19,16 +27,58 @@ Automate ingestion of **subscribed AlienVault OTX pulse indicators** into Micros
 
 **Implementation**
 - Logic App calls OTX `/pulses/subscribed`.
-- Filters **IPv4**, **domain**, **URL**, and **hash** indicators.
+- Filters **IPv4**, **domain**, **URL**, **hostname**, and **hash** indicators.
 - Tags each IOC with `"OTX"` and the **pulse name**.
 - Deduplicates before ingestion into `ThreatIntelligenceIndicator`.
 
 <details>
 <summary><strong>📷 Screenshot References</strong></summary>
 
-- `otx_logic_app_workflow.png`  
-- `otx_api_connection_settings.png`  
-- `otx_ingestion_results.png`
+- Example of subscribed pulses we will be using
+  <img width="1920" height="925" alt="Using OTX Alienvault for our live threat feed pulse with a view of our subscribed pulses using a select few to avoid too many IOCs" src="https://github.com/user-attachments/assets/853b0d05-bc73-4f22-8e81-355e7fd8e228" />
+
+- Overview of our OTX Logic App
+  <img width="1912" height="962" alt="calling our OTX API to ingest our subscribed pulses and their IOCs into sentinel with full customization of what gets ingested" src="https://github.com/user-attachments/assets/5e0e7082-1ca7-4f4f-8c53-da08568a79f3" />
+
+- Live feed from our pulses will be updated daily
+  
+  <img width="559" height="305" alt="recurrence is set to once per day for the pulse scan" src="https://github.com/user-attachments/assets/95aa0815-4a05-4144-abe6-15a47c946d67" />
+
+- Calling our authentication token to reference necessary permissions from Microsoft Graph Audience
+  <img width="561" height="662" alt="getting auth token and calling to Microsoft Graph audience so we can write our IOCs to Threat Intelligence" src="https://github.com/user-attachments/assets/f680c833-f088-4076-b2a9-dc41da95e808" />
+
+- HTTP Request to our OTX API token
+  
+  <img width="569" height="474" alt="HTTP Get request to our OTX token" src="https://github.com/user-attachments/assets/52f5720a-7f24-4f66-82b7-e1c639e4dc42" />
+
+- Parsing our IOCs
+  
+  <img width="565" height="805" alt="Parse JSON step for our IOCs" src="https://github.com/user-attachments/assets/eb75deea-2526-4f0b-a856-707aab474576" />
+
+- Selecting distinct key steps
+  
+  <img width="559" height="343" alt="Select to keys step " src="https://github.com/user-attachments/assets/3fb7340a-520e-4f7d-9c2b-828812d2b9eb" />
+  <img width="563" height="274" alt="Distinct keys step" src="https://github.com/user-attachments/assets/5064c901-26b7-4cf2-b0d4-5c6a6f2645a3" />
+
+- For each loop that repeats for hostname, IPv4, domain, URL, and hash IOCs
+  <img width="565" height="807" alt="for each loop code view which repeats for hostname IP Hash etc" src="https://github.com/user-attachments/assets/f6a949a9-6f46-45b4-9d20-e9c87928b3bd" />
+
+- Switch step that repeats for hostname, IPv4, domain, URL, and hash IOCs
+  <img width="563" height="803" alt="Switch step using same format that repeats for the Domain IP hash etc" src="https://github.com/user-attachments/assets/17285da3-c5cc-4846-a7a4-40ae00577a03" />
+
+- Overview of switch step across all IOCs
+  <img width="1664" height="570" alt="switch step that then grabs indicators of different types from our pulse" src="https://github.com/user-attachments/assets/ba96a4df-1654-4d0b-a01c-023d16c2a94f" />
+
+- Within the switch step are various HTTP requests to post each of the hostname, IPv4, domain, URL, and hash IOCs
+  <img width="563" height="809" alt="example of one of the HTTP Post Graph steps for the IP IOCs with the same exact format replicated for the URL domain host and hash" src="https://github.com/user-attachments/assets/c0713aa0-ba15-4f9c-8c19-1745974b0937" />
+
+- Playbook operating successfully
+  
+  <img width="297" height="555" alt="OTX Playbook successfully ran" src="https://github.com/user-attachments/assets/81032b39-5878-4ef7-b3b3-a583f9ce14ad" />
+
+- Our OTX feed now bringing in external IOCs from our subscribed pulses
+  <img width="1912" height="962" alt="our OTX feed now bringing IOCs from our pulses we can sort this mess of indicators later and will work on dedupe'ing this in the fine tuning phase of the project" src="https://github.com/user-attachments/assets/eec7cdb4-9224-498d-884e-bfa9b7f0f543" />
+
 </details>
 
 <details>
@@ -37,6 +87,7 @@ Automate ingestion of **subscribed AlienVault OTX pulse indicators** into Micros
 - Favor REST API for full control over filtering, tagging, and deduplication.  
 - Post to `ThreatIntelligenceIndicator` with standardized `Tags: ["OTX", "<PulseName>"]`.  
 - Add a **source reliability** tag (e.g., `Confidence=Medium`) for downstream analytics.
+- Using a Logic App to pull in external IOCs allows for full automation and control over which pulses we want to bring in.
 </details>
 
 ---
