@@ -500,4 +500,4 @@ friendly_location = strcat(cityname, " (", countryname, ")");
 
 ---
 
-**Next Phase:** [Phase 7 – Incident Response](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/6%20-%20Threat%20Hunting.md)
+**Next Phase:** [Phase 7 – Incident Response](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/7%20-%20Incident%20Response.md)
