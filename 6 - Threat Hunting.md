@@ -252,7 +252,7 @@ Command line: whoami.exe /fqdn
 - `JokerHeartbeat` scheduled task created for persistence
   <img width="1757" height="492" alt="second query persistance with scheduled task" src="https://github.com/user-attachments/assets/3d3b1d80-e9a7-4b80-894e-1d4134d3997c" />
 
-- Legitimate windows service running from `Local/Temp` folder indicative of classic masquerading & process injection techniques
+- Legitimate Windows service running from `Local/Temp` folder indicative of classic masquerading & process injection techniques
   <img width="1757" height="491" alt="second query suspicious folder path as legitimate windows process svchost is being run from temp folder " src="https://github.com/user-attachments/assets/8cb169f0-829c-4b3f-8d3d-ea484a8cd4aa" />
 
 - Log showing more suspicious LOLBin activity
