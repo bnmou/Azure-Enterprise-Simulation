@@ -113,6 +113,21 @@ If hits appear (e.g., LSASS dump tools, `net user`), **pivot** into device timel
 Summarize Joker’s actions **chronologically**, map to **MITRE ATT&CK**, and propose **detections**.
 
 <details>
+<summary><strong>📷 Screenshot References</strong></summary>
+
+- We are able to filter our IOCs using the `Internal-Incident` tag for ease of access
+  <img width="1912" height="962" alt="we are able to filter for the IOCs from our relevant internal incidents that we want to hunt for using tags that we had previously created when making these IOCs from our previous SOAR playbooks phase" src="https://github.com/user-attachments/assets/b5166dc8-73c6-418a-b651-c81d1b430d80" />
+
+- We zero in on the `Joker` IOC from a previous incident and begin our hunt
+  
+  <img width="418" height="763" alt="we will hunt for the Joker IOC from a previous incident with an SQR3 hypothesis" src="https://github.com/user-attachments/assets/cfbb229d-ac1b-4e83-9807-ee18c84e55cd" />
+
+- Using Microsoft Sentinel's Threat Hunting feature to document our investigation for the malicious `Joker` account
+  <img width="1912" height="962" alt="creating our hunt for JOKER within sentinels built in hunting feature" src="https://github.com/user-attachments/assets/1e510cd1-4cf7-4307-9972-15be4938f89f" />
+
+</details>
+
+<details>
 <summary><strong>🧭 SQR3 (State–Question–Refine–Review–Report) Checklist</strong></summary>
 
 - **State:** Environment posture, account role, assets in scope.  
