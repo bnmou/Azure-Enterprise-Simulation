@@ -351,13 +351,6 @@ DeviceRegistryEvents
 7. **Create Scheduled Task** `JokerTask` → `T1053`  
 8. **Run `whoami.exe /fqdn`** → `T1087` (Account Discovery)
 
-<details>
-<summary><strong>🗺️ Evidence Links (Screenshots)</strong></summary>
-
-Cross-reference the screenshots in Sections 3.1–3.4 for each timeline step.  
-Where IPs appear, they are masked in the public repo screenshots for privacy.
-</details>
-
 ---
 
 ## 🔗 5. Correlation Analysis
@@ -373,6 +366,7 @@ Where IPs appear, they are masked in the public repo screenshots for privacy.
 - The combination of scheduled tasks and service creation is a classic persistence chain.  
 - The use of `mshta` and `regsvr32` suggests living-off-the-land execution to evade detection.  
 - Lack of file/registry artifacts could indicate **trial-and-error** staging or **cleanup**.
+- The attacker prioritized persistence and defense evasion over data exfiltration, which indicates they were likely staging a long-term attack plan — maintaining covert access until a strategic objective or high-value opportunity presented itself.
 </details>
 
 ---
