@@ -63,7 +63,7 @@ This home lab simulates a real-world enterprise SOC using Microsoft Azure, Senti
 ---
 
 <details>
-<summary><strong>📖 Phase 7: Incident Response</strong></summary>
+<summary><strong>🚨 Phase 7: Incident Response</strong></summary>
 
 📄 [View Phase 7 Documentation](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/7%20-%20Incident%20Response.md)
 
