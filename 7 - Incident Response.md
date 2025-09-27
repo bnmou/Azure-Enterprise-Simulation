@@ -118,6 +118,8 @@ We leveraged our custom Logic App playbooks created in **phase 5** for automated
 - ▶️ **SusPrivEscalation** → restricted admin rights of new attacker accounts + Barbara’s account.
 <img width="1912" height="962" alt="finally we run our sus priv escalation playbook to restrict admin privs of all accounts in the incident including the compromised barbara account in which we will restore admin rights later on" src="https://github.com/user-attachments/assets/8d6981bb-9c31-4b38-ab85-93c4e2d76064" />
 
+</details>
+
 ---
 
 <details>
@@ -125,24 +127,22 @@ We leveraged our custom Logic App playbooks created in **phase 5** for automated
 
 ### 🧾 File Hash (SHA256)  
 Blocked & remediated.  
-![Hash added to Defender](this is the known hash for the malicious macro exe so we will add it to defender.png)  
+<img width="980" height="31" alt="this is the known hash for the malicious macro exe so we will add it to defender" src="https://github.com/user-attachments/assets/c1078b9b-b5ae-4e5c-8817-adb0bfd6c51c" />
+<img width="1912" height="962" alt="i8t9ZCZevs" src="https://github.com/user-attachments/assets/3e20e93a-9021-4cc3-ae1c-456cb86ad14d" />
 
 ---
 
 ### 🌍 Malicious Domains  
 `*.ngrok-free.app` → Block execution (C2 category).  
-![Domain added to blocklist](adding ngrok to block list for the tenant.png)  
+<img width="1050" height="85" alt="we will now move onto defender and block all urls that end with ngrok free com" src="https://github.com/user-attachments/assets/50ddf485-ad09-4535-8418-c19f24c98bd2" />
+<img width="1912" height="962" alt="adding ngrok to block list for the tenant" src="https://github.com/user-attachments/assets/64540812-e7a4-4d5f-a307-bf04499e4ea4" />
 
 ---
 
 ### 📡 Malicious IPs  
-- 3.x.x.175  
-- 3.x.x.225  
-- 3.x.x.203  
-- 3.x.x.220  
-
-![IPs blocklisted](we will now add these IPs to the block list.png)  
-![IPs confirmation](IP added to block list same process for the other 3 IPs.png)  
+Added to tenant block list.
+<img width="956" height="119" alt="we will now add these IPs to the block list" src="https://github.com/user-attachments/assets/235a198f-30fe-4be0-beb2-02a645f1d304" />
+<img width="1912" height="962" alt="IP added to block list same process for the other 3 IPs" src="https://github.com/user-attachments/assets/c2dcdf68-e5d4-4cd9-bf89-eea3f45165b8" />
 
 ---
 
