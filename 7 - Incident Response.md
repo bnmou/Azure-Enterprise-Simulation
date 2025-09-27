@@ -28,54 +28,77 @@ We grouped all alerts into **one incident** and responded in line with the **NIS
 <summary>🔎 1) Detection & Analysis</summary>
 
 ### 📂 Incident created in Sentinel  
-![Incidents list + incident overview](OURFIR~1.PNG)  
+<img width="1912" height="962" alt="Overview of the Multi stage incident our detection rules put together" src="https://github.com/user-attachments/assets/54194b05-84e7-4b89-94b8-853e8fda14c7" />
 
 ---
 
 ### 📊 Incident overview (grouped alerts + entities)  
-![Our incident with multiple grouped alerts and our entities](our incident with multiple grouped alerts and our entities.png)  
+<img width="1912" height="962" alt="Our incident with multiple grouped alerts and our entities" src="https://github.com/user-attachments/assets/42ab5c21-4c9e-4656-bf88-dfacf46ddf74" />
 
 ---
 
-### 📄 Evidence of malicious macro, reverse shell & persistence  
-![Persistence tasks, foreign IP addresses, suspicious macro doc, compromised accounts/hosts](persistence tasks foreign IP addresses obfuscated command lines and a suspicious macro document along with compromised accounts and hosts.png)  
+### 📄 Evidence of malicious macro, reverse shell & C2 exfil  
+<img width="432" height="505" alt="our alerts from our detection rules including a malicious macro reverse shell and data exfil" src="https://github.com/user-attachments/assets/22d5298f-4623-4a19-9ce7-279c3795858f" />
 
 ---
 
-### 🧩 Reverse shell task creation  
-![Reverse shell scheduled task containment playbook](Seeing this scheduled reverse shell task we launch the reverse shell containment playbook to kill all instances of a potential reverseshell.png)  
+### 🔐 Evidence of LSASS access & persistence via scheduled tasks
+<img width="427" height="499" alt="as well as our lsass access rules and scheduled task rules" src="https://github.com/user-attachments/assets/ad43939d-0f3d-4699-aac7-d8cb94502661" />
 
 ---
 
-### 🔐 LSASS dump & credential theft evidence  
-![LSASS dump and adversary creating new admin accounts](lsass access and the adversary creating new accounts with admin priv.png)  
+### 👥 Evidence of attacker account creation + privilege escalation  
+<img width="431" height="504" alt="finally our user creation and priv escalation" src="https://github.com/user-attachments/assets/86dddc8e-ccb6-43b9-893f-ed15b5b75fd2" />
 
 ---
 
-### 👥 Attacker account creation + privilege escalation  
-![User creation and privilege escalation](finally our user creation and priv escalation.png)  
+### 🌐 Incident IOCs identified
+<img width="1082" height="776" alt="persistence tasks foreign IP addresses obfuscated command lines and a suspicious macro document along with compromised accounts and hosts" src="https://github.com/user-attachments/assets/8dad122a-fba5-4131-ad41-eb05ae691834" />
+<img width="1081" height="776" alt="lsass access and the adversary creating new accounts with admin priv" src="https://github.com/user-attachments/assets/b0b2de9b-9fb5-4e50-9d41-cd5f0e9faaa0" />
 
 ---
 
-### 🌐 NGROK URLs identified  
-![NGROK URLs entity evidence](we will now move onto defender and block all urls that end with ngrok free com.png)  
+### 📅 Timeline of Grouped Alerts  
+
+The following timeline reconstructs the attack sequence, mapped to the **Cyber Kill Chain**:  
+
+1️⃣ **Initial Access**  
+- Delivery of a **malicious `.docm` file** (Wayne_Enterprises_Resume.docm).  
+- User `barbara.hr` opened the document, triggering **macro execution**.  
+
+2️⃣ **Execution**  
+- Macro spawned **PowerShell commands**, downloading a reverse shell payload from NGROK C2.  
+- Reverse shell connection established → outbound traffic observed.  
+
+3️⃣ **Persistence**  
+- Adversary created a **scheduled task** (`schtasks.exe`) to repeatedly launch the reverse shell at logon.  
+
+4️⃣ **Credential Access**  
+- **LSASS process dumped** using `rundll32` + `comsvcs.dll`.  
+- Dump file stored in temporary directories for later retrieval.  
+
+5️⃣ **Privilege Escalation**  
+- Multiple local accounts (`attacker1`, `attacker2`, `attacker3`) created via `net user`.  
+- Accounts immediately added to the **Administrators group**.  
+
+6️⃣ **Command & Control (C2)**  
+- Outbound traffic to multiple **NGROK endpoints** observed (C2 tunnels).  
+- External IP addresses linked to the reverse shell sessions.  
+
+7️⃣ **Exfiltration**  
+- Data staged and sent out via NGROK tunnel.  
+- Alerts flagged **data exfiltration over alternative protocol**.  
 
 ---
 
-### 📅 Timeline views of grouped alerts  
-- Malicious `.docm` → Reverse Shell → Data Exfiltration  
-![Timeline - Macro, Reverse Shell, Exfil](our alerts from our detection rules including a malicious macro reverse shell and data exfil.png)  
-
-- LSASS Access + Scheduled Tasks  
-![Timeline - LSASS & Scheduled tasks](as well as our lsass access rules and scheduled task rules.png)  
-
-- User creation + Priv Esc  
-![Timeline - User creation & Priv Esc](finally our user creation and priv escalation.png)  
+✅ By mapping to the Cyber Kill Chain, we can clearly see how the attacker moved from **Initial Access → Execution → Persistence → Credential Access → Privilege Escalation → C2 → Exfiltration**. 
 
 ---
 
 ### 📉 Log retention gap (important lesson)  
-![Log retention purged](Unfortunately our log retention period purged all logs so we must improvise with the information we have so far and add this to our lessons learned at the end.png)  
+<img width="1011" height="402" alt="Unfortunately our log retention period purged all logs so we must improvise with the information we have so far and add this to our lessons learned at the end" src="https://github.com/user-attachments/assets/de241b11-0e78-431a-846a-6c79be19b560" />
+
+Unfortunately, our log retention period purged all logs, so we must improvise with the information we have so far and coordinate a better retention policy or compensating control during our lessons learned segment.
 
 </details>
 
