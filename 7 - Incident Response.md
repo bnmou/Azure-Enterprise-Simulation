@@ -207,7 +207,7 @@ Because it’s cloud-hosted, we can restore to a **known-good state** using **Az
 
 ## ✅ Final Status
 Incident closed after containment, eradication, and recovery:  
-![Incident closed screenshot](incident has been closed after initial remediation steps our next step is to remote onto the victim machine and restore the device to a healthy state.png)  
+<img width="1912" height="962" alt="incident has been closed after initial remediation steps our next step is to remote onto the victim machine and restore the device to a healthy state" src="https://github.com/user-attachments/assets/858f7b59-bbcc-4e09-82d1-0cb36583ff06" />
 
 **Closure note:**  
 > Threat actor infiltrated with malicious macro payload → reverse shell → persistence via tasks + accounts → LSASS dump → NGROK exfil. All remediations applied, host isolated and restored, IOCs blocked, admin accounts disabled.
@@ -219,7 +219,6 @@ Incident closed after containment, eradication, and recovery:
 - Playbook-MacroExecution  
 - ReverseShellContainment  
 - SusPrivEscalation  
-- LSASS_Access_AutoRes  
 
 ### ⚔️ MITRE ATT&CK Mapping
 - **Initial Access** → User Execution (T1204)  
