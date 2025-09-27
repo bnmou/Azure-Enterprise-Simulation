@@ -230,3 +230,4 @@ Incident closed after containment, eradication, and recovery:
 
 ---
 
+**Next Phase:** [Phase 8 – False Positives & Tuning](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/8%20-%20False%20Positives%20%26%20Tuning.md)
