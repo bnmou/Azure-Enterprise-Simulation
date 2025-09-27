@@ -107,25 +107,16 @@ Unfortunately, our log retention period purged all logs, so we must improvise wi
 <details>
 <summary>🛡️ 2) Containment Actions</summary>
 
-We leveraged **Microsoft Sentinel playbooks** for automated containment:
+We leveraged our custom Logic App playbooks created in **phase 5** for automated containment:
 
-- ▶️ **Playbook-MacroExecution** → blocked malicious macro execution.  
-  ![MacroExecution playbook run](our alerts from our detection rules including a malicious macro reverse shell and data exfil.png)  
+- ▶️ **Playbook-MacroExecution** → blocked malicious macro execution + isolated device.  
+<img width="1912" height="962" alt="OURFIR~1" src="https://github.com/user-attachments/assets/56c11da5-c49b-4f5b-8882-198fc6a663dd" />
 
 - ▶️ **ReverseShellContainment** → killed PowerShell reverse shells + removed scheduled task.  
-  ![ReverseShellContainment playbook run](Seeing this scheduled reverse shell task we launch the reverse shell containment playbook to kill all instances of a potential reverseshell.png)  
+<img width="1912" height="962" alt="Seeing this scheduled reverse shell task we launch the reverse shell containment playbook to kill all instances of a potential reverseshell" src="https://github.com/user-attachments/assets/4f3adee4-587b-466b-b862-4ad0335d25e8" />
 
-- ▶️ **SusPrivEscalation** → restricted admin rights of new attacker accounts + Barbara’s account.  
-  ![Privilege Escalation containment](finally we run our sus priv escalation playbook to restrict admin privs of all accounts in the incident including the compromised barbara account in which we will restore admin rights later on.png)  
-
-- ▶️ **LSASS_Access_AutoRes** (manual trigger) → isolated device + logged remediation to incident timeline.  
-
----
-
-### 🔒 Device isolation in MDE  
-![Device isolation completed](we can then release the machine from isolation in MDE.png)  
-
-</details>
+- ▶️ **SusPrivEscalation** → restricted admin rights of new attacker accounts + Barbara’s account.
+<img width="1912" height="962" alt="finally we run our sus priv escalation playbook to restrict admin privs of all accounts in the incident including the compromised barbara account in which we will restore admin rights later on" src="https://github.com/user-attachments/assets/8d6981bb-9c31-4b38-ab85-93c4e2d76064" />
 
 ---
 
@@ -165,6 +156,9 @@ Blocked & remediated.
 
 <details>
 <summary>🔄 4) Recovery — Restoring Host</summary>
+
+After containing the host, blocking the IOCs, and eradicating the threat, we can move onto the recovery phase by beginning to release the host from containment.
+
 
 Our victim machine (`wayne-client`) was an **Azure VM**.  
 Because it’s cloud-hosted, we can restore to a **known-good state** using **Azure Backup / Restore Point** or by creating a **new VM from a snapshot**.
