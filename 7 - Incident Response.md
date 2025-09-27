@@ -158,12 +158,11 @@ Added to tenant block list.
 <summary>🔄 4) Recovery — Restoring Host</summary>
 
 After containing the host, blocking the IOCs, and eradicating the threat, we can move onto the recovery phase by beginning to release the host from containment.
-
+<img width="1912" height="962" alt="we can then release the machine from isolation in MDE" src="https://github.com/user-attachments/assets/8cecce4f-7e58-4859-9291-e127c49539f8" />
 
 Our victim machine (`wayne-client`) was an **Azure VM**.  
 Because it’s cloud-hosted, we can restore to a **known-good state** using **Azure Backup / Restore Point** or by creating a **new VM from a snapshot**.
-
-![Azure VM ready for restore](our victim machine is an azure resource so we can restore to a known good checkpoint from here.png)  
+<img width="1912" height="962" alt="our victim machine is an azure resource so we can restore to a known good checkpoint from here" src="https://github.com/user-attachments/assets/53a5fd43-e260-41a8-9383-a6f8fe50a89b" />
 
 ---
 
@@ -187,11 +186,6 @@ Because it’s cloud-hosted, we can restore to a **known-good state** using **Az
 - Blocklists (hash, IPs, domains) enforced.  
 - Compromised accounts secured & MFA enforced.  
 - Endpoint monitored under heightened scrutiny (14 days).  
-
----
-
-### 🔓 Releasing host from isolation after validation  
-![Release from isolation](we can then release the machine from isolation in MDE.png)  
 
 </details>
 
