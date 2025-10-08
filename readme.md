@@ -74,7 +74,7 @@ This home lab simulates a real-world enterprise SOC using Microsoft Azure, Senti
 <details>
 <summary><strong>🛡️ Phase 8: False Positives, Tuning & Hardening</strong></summary>
 
-📄 [View Phase 8 Documentation](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/8%20-%20False%20Positives%20%26%20Tuning.md)
+📄 [View Phase 8 Documentation](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/8%20-%20False%20Positives%2C%20Tuning%20%26%20Hardening.md)
 
 </details>
 
