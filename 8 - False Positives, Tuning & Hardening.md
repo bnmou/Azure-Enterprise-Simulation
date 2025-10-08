@@ -159,10 +159,8 @@ A mature SOC requires high-signal alerting. After Phase 2, where real malicious 
 Phase 8 transforms Wayne Enterprises’ cloud security posture from **reactive** to **resilient**.  
 Each remediation directly ties back to the lessons learned during **Attack Simulation and Threat Emulation** — ensuring the same attack vectors can no longer succeed.  
 
----
-
-**Next Phase:** [Phase 9 – Dashboarding & Reporting](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/9%20-%20Dashboarding%20%26%20Reporting.md)
 With these controls in place, the Wayne Enterprises SOC can now perform high-fidelity detection, confident triage, and sustained incident response — closing the loop on the full defensive lifecycle.
 
 ---
 
+**Next Phase:** [Phase 9 – Dashboarding & Reporting](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/9%20-%20Dashboarding%20%26%20Reporting.md)
