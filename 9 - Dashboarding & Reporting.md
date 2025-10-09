@@ -102,3 +102,7 @@ This report simulates what a **monthly or quarterly SOC summary** would look lik
 Phase 9 successfully demonstrates the **reporting and visualization layer** of the Azure SOC Operations Home Lab.
 
 While earlier phases focused on **detections**, **responses**, and **playbooks**, this phase translates those technical outcomes into an **easy-to-digest operational summary** — the final step before concluding the project.
+
+---
+
+**Next Phase:** [Phase 10 – Lessons Learned & Next Steps](https://github.com/bnmou/Azure-Enterprise-Simulation/blob/main/99%20-%20Lessons%20Learned%20%26%20Next%20Steps.md)
